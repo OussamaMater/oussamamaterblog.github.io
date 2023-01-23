@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 23 Jan 2023 22:11:28 GMT</lastBuildDate><item><title><![CDATA[OverTheWire - Bandit]]></title><description><![CDATA[This is a guide that helps you through the challenges, so you can follow up and actually do the challenges, so no passwords will be provided…]]></description><link>null/overthewire/</link><guid isPermaLink="false">null/overthewire/</guid><pubDate>Sun, 01 May 2022 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;This is a guide that helps you through the challenges, so you can follow up and actually do the challenges, so no passwords will be provided.&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;Level 0&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;The goal of this challenge is to connect to the provided server via ssh.
+&lt;br&gt;
+To be able to use ssh you will always need 3 things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The server&apos;s ip&lt;/li&gt;
+&lt;li&gt;The username&lt;/li&gt;
+&lt;li&gt;The password&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;so the command will be structured this way:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ssh username@ip&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ssh uses 22 as a default port, but sometimes the administrator may change it, if that&apos;s the case, you&apos;ll have to provide it.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; bandit0@bandit.labs.overthewire.org &lt;span class=&quot;token parameter variable&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2220&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# use bandit0 as a password as well&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 0 → 1&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Now that you are inside the challenge server we can start solving these challenges.
+&lt;br&gt;
+Solving a challenge will give you the password of the next user, this way you can keep levelling up.
+&lt;br&gt;
+For this challenge, the password is stored in a file &quot;readme&quot; in the home directory of bandit0 user.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit0@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+readme
+bandit0@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; readme 
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 1 → 2&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This challenge is similar to the previous one, but with a twist.
+&lt;br&gt;
+The &quot;cat&quot; command is not always used to echo out files content, it has different usages, so for instance if no filename is provided or the filename is &quot;-&quot; it will read from the stdin instead.
+&lt;br&gt;
+&lt;a href=&quot;https://linuxize.com/post/linux-cat-command/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://unix.stackexchange.com/questions/16357/usage-of-dash-in-place-of-a-filename&quot;&gt;Read More - Discussion&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit1@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+-
+bandit1@bandit:~$ ./- &lt;span class=&quot;token comment&quot;&gt;# or use the full path&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 2 → 3&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Yet, so similar to the previous challenges, you need to echo out the content of a file, but the filename is special, kind of, in our case it has spaces, so you can&apos;t provide it as an argument to the &quot;cat&quot; command, as it will be look for the files &quot;spaces&quot;, &quot;in&quot;, &quot;this&quot;, &quot;filename&quot;.
+&lt;br&gt;
+To solve this challenge we need to &lt;em&gt;escape&lt;/em&gt; the character space.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit2@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+spaces &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; this filename
+bandit2@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; spaces&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt; in&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt; this&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt; filename
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 3 → 4&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge we need to change directory and list &lt;em&gt;all&lt;/em&gt; the files.
+&lt;br&gt;
+In Linux and Unix systems, the files starting with . (a dot) are hidden files.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit3@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt;
+total &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+drwxr-xr-x &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; root root &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; inhere
+bandit3@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; inhere
+bandit3@bandit:~/inhere$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-la&lt;/span&gt;
+total &lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt;
+drwxr-xr-x &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; root    root    &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+drwxr-xr-x &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; root    root    &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;
+-rw-r----- &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; bandit4 bandit3   &lt;span class=&quot;token number&quot;&gt;33&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; .hidden
+bandit3@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; .hidden
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 4 → 5&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Same as the previous challenge we need to change the directory, but once we do it, we are granted 9 files, one of which contains the password.
+&lt;br&gt;
+The hint states that the file we are looking for is human-readable (text), so we need to perform a simple check against all the files using the &quot;file&quot; command.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit4@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt;
+total &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+drwxr-xr-x &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; root root &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; inhere
+bandit4@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; inhere
+bandit4@bandit:~/inhere$ &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; ./* &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# there is no need for the grep in this level.&lt;/span&gt;
+./-file07: ASCII text
+bandit4@bandit:~/inhere$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; ./-file07
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 5 → 6&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge, we are granted 20 directories, each directory has multiple files, making it impossible to inspect the content of every file one by one, and only one out of these files has the password.
+&lt;br&gt;
+The file we are looking for has some unique properties:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;human-readable&lt;/li&gt;
+&lt;li&gt;1033 bytes in size&lt;/li&gt;
+&lt;li&gt;not executable&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We can use the &quot;find&quot; command and get it easily.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit5@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt;
+total &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+drwxr-x--- &lt;span class=&quot;token number&quot;&gt;22&lt;/span&gt; root bandit5 &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; inhere
+bandit5@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; inhere
+bandit5@bandit:~/inhere$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; 
+maybehere00  maybehere03  maybehere06  maybehere09  maybehere12  maybehere15  maybehere18
+maybehere01  maybehere04  maybehere07  maybehere10  maybehere13  maybehere16  maybehere19
+maybehere02  maybehere05  maybehere08  maybehere11  maybehere14  maybehere17
+bandit5@bandit:~/inhere$ &lt;span class=&quot;token function&quot;&gt;find&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-readable&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-size&lt;/span&gt; 1033c &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-executable&lt;/span&gt;
+./maybehere07/.file2
+bandit5@bandit:~/inhere$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; ./maybehere07/.file2
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 6 → 7&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Similar to the previous challenge, we need to look for a file, but this time, across the system, the file has these unique properties:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;owned by user bandit7&lt;/li&gt;
+&lt;li&gt;owned by group bandit6&lt;/li&gt;
+&lt;li&gt;33 bytes in size&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &quot;find&quot; command for the rescue!&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit6@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+bandit6@bandit:~$ &lt;span class=&quot;token function&quot;&gt;find&lt;/span&gt; / &lt;span class=&quot;token parameter variable&quot;&gt;-user&lt;/span&gt; bandit7 &lt;span class=&quot;token parameter variable&quot;&gt;-group&lt;/span&gt; bandit6 &lt;span class=&quot;token parameter variable&quot;&gt;-size&lt;/span&gt; 33c &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt;/dev/null
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /var/lib/dpkg/info/bandit7.password
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 7 → 8&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This challenge requires us to filter a big text file by grabbing a specific word.
+&lt;br&gt;
+The &quot;grep&quot; command is suitable for the job.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit7@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+data.txt
+bandit7@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; data.txt &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;millionth&quot;&lt;/span&gt;
+millionth       &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+bandit7@bandit:~$
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 8 → 9&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Similar to the previous challenge, we need to filter a big text file, the line we are looking for is the only line that occurs once, so we need to remove all the duplicates and echo out the content.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit8@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+data.txt
+bandit8@bandit:~$ &lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt; data.txt &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-u&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 9 → 10&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Still the same style as the previous one, to get the password we need to do some kind of filtering.
+&lt;br&gt;
+In this challenge, the password we are looking for is in one of the few &lt;em&gt;human-readable&lt;/em&gt; strings, preceded by several = characters.
+&lt;br&gt;
+We will create our first very simple &lt;em&gt;regular expression&lt;/em&gt; (a pattern) to get all words preceded by at least one =.
+&lt;br&gt;
+Regular Expressions are so interesting and a great skill to have, here are some resources:
+&lt;br&gt;
+&lt;a href=&quot;https://www.linux.com/topic/desktop/introduction-regular-expressions-new-linux-users/&quot;&gt;Read More - Article 1&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://ubuntu.com/blog/regex-basics&quot;&gt;Read More - Article 2&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.geeksforgeeks.org/how-to-use-regular-expressions-regex-on-linux&quot;&gt;Read More - Article 3&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=ZfQFUJhPqMM&quot;&gt;Read More - Video&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit9@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+data.txt
+bandit9@bandit:~$ strings data.txt &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;=.*&quot;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; the*2i&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;&quot;4
+&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;:G e
+&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; password
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;I&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;zsGi
+Z&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; is
+&lt;span class=&quot;token assign-left variable&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;t&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;E
+&lt;span class=&quot;token assign-left variable&quot;&gt;Zdb&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+c^ &lt;span class=&quot;token assign-left variable&quot;&gt;LAh&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;3G
+*SF&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;s
+&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;A.H&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;^&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 10 → 11&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This time, there is no filtering, the challenge is straight forward, all we need to do is decoding the &lt;em&gt;base64&lt;/em&gt; text.
+&lt;br&gt;
+If you&apos;ve never heard about this encoding, or what bases are, I highly recommend reading these articles:
+&lt;br&gt;
+&lt;a href=&quot;https://code.tutsplus.com/tutorials/base-what-a-practical-introduction-to-base-encoding--net-27590&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.base64encoder.io/learn/&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit10@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+data.txt
+bandit10@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; data.txt &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; base64 &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;
+The password is &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 11 → 12&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge the file content have been rotated by 13 positions, it&apos;s a common encryption called &lt;em&gt;rot13&lt;/em&gt; which replaces a letter with the 13th etter after it in the alphabet.
+&lt;br&gt;
+We can simply use the &quot;tr&quot; command and replace one set of alphabet with another set.
+&lt;br&gt;
+I highly recommend reading more about the tr command:
+&lt;br&gt;
+&lt;a href=&quot;https://www.geeksforgeeks.org/tr-command-in-unix-linux-with-examples/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+And about the common substitution encryption methods:
+&lt;br&gt;
+&lt;a href=&quot;http://practicalcryptography.com/ciphers/substitution-category/&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit11@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; data.txt &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;A-Za-z&apos;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;N-ZA-Mn-za-m&apos;&lt;/span&gt;
+The password is &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 12 → 13&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This task is simple, but so repetitive, we have a Hex Dump that should be reverse engineered to a binary, and we start the decompression journey.
+&lt;br&gt;
+Note that in the solution I went quick, to know what decompression you are going for, use the &quot;file&quot; command as we learned in the previous challenges.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit12@bandit:~$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/oussama
+bandit12@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp/oussama
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; ~/data.txt &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+bandit12@bandit:/tmp/oussama$ xxd &lt;span class=&quot;token parameter variable&quot;&gt;-r&lt;/span&gt; data &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; binary
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; binary binary.gz &lt;span class=&quot;token comment&quot;&gt;# we need that suffix for the command to work&lt;/span&gt;
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;gzip&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; binary.gz
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;bzip2&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; binary
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; binary.out binary.gz
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;gzip&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; binary.gz
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-xf&lt;/span&gt; binary
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-xf&lt;/span&gt; data5.bin
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;bzip2&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; data6.bin &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt;/dev/null
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-xf&lt;/span&gt; data6.bin.out
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; data8.bin data8.gz
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;gzip&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; data8.gz
+bandit12@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; data8
+The password is &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 13 → 14&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Well this has to be one of the easiest tasks, as we are given the ssh private key.
+&lt;br&gt;
+All these challenges we&apos;ve been using the &lt;em&gt;password&lt;/em&gt; to login, but this is only an option, as we can use the private key instead, and that&apos;s exactly what we&apos;ve done here.
+Read more about the two authentication methods:
+&lt;br&gt;
+&lt;a href=&quot;https://www.appviewx.com/education-center/ssh-authentication-methods/&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit13@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-i&lt;/span&gt; sshkey.private bandit14@localhost&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 14 → 15&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;To get the next password, we need to submit the current password to a service running on port 30000.
+&lt;br&gt;
+This can be done by using &quot;netcat&quot; command.
+&lt;br&gt;
+If you are planning on playing CTFs I highly recommend learning this command and how it works as it can be so handy.
+&lt;br&gt;
+&lt;a href=&quot;https://linuxize.com/post/netcat-nc-command-with-examples/&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit14@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit14
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - current password&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+bandit14@bandit:~$ &lt;span class=&quot;token function&quot;&gt;nc&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1 &lt;span class=&quot;token number&quot;&gt;30000&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - current password&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# simply paste the bandit14&apos;s password and hit enter&lt;/span&gt;
+Correct&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - password &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; the next level&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 15 → 16&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;It is almost the same challenge, the only difference is that server running this service is using SSL.
+&lt;br&gt;
+You can read more about SSL here:
+&lt;br&gt;
+&lt;a href=&quot;https://www.websecurity.digicert.com/security-topics/what-is-ssl-tls-https&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit15@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit15
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - current password&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+bandit15@bandit:~$ ncat &lt;span class=&quot;token parameter variable&quot;&gt;-C&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--ssl&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1 &lt;span class=&quot;token number&quot;&gt;30001&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - current password&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+Correct&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - password &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; the next level&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 16 → 17&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This challenge will test what we learned in the previous ones, we need to locate all the services running in a specific range, then connect to each one of them, submit the current password, and get a private key that will eventually help us get the wanted password.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit16@bandit:~$ nmap &lt;span class=&quot;token parameter variable&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;31000&lt;/span&gt;-32000 &lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1
+Starting Nmap &lt;span class=&quot;token number&quot;&gt;7.40&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; at &lt;span class=&quot;token number&quot;&gt;2022&lt;/span&gt;-07-04 &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;:39 CEST
+Nmap scan report &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; localhost &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Host is up &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;.00022s latency&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.
+Not shown: &lt;span class=&quot;token number&quot;&gt;996&lt;/span&gt; closed ports
+PORT      STATE    SERVICE
+&lt;span class=&quot;token number&quot;&gt;31046&lt;/span&gt;/tcp &lt;span class=&quot;token function&quot;&gt;open&lt;/span&gt;     unknown
+&lt;span class=&quot;token number&quot;&gt;31518&lt;/span&gt;/tcp filtered unknown
+&lt;span class=&quot;token number&quot;&gt;31691&lt;/span&gt;/tcp &lt;span class=&quot;token function&quot;&gt;open&lt;/span&gt;     unknown
+&lt;span class=&quot;token number&quot;&gt;31790&lt;/span&gt;/tcp &lt;span class=&quot;token function&quot;&gt;open&lt;/span&gt;     unknown
+&lt;span class=&quot;token number&quot;&gt;31960&lt;/span&gt;/tcp &lt;span class=&quot;token function&quot;&gt;open&lt;/span&gt;     unknown
+
+Nmap done: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; IP address &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; up&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; scanned &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1.25&lt;/span&gt; seconds
+bandit16@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit16 &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; openssl s_client &lt;span class=&quot;token parameter variable&quot;&gt;-quiet&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-connect&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1:31790
+&lt;span class=&quot;token assign-left variable&quot;&gt;depth&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; CN &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; localhost
+verify error:num&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;:self signed certificate
+verify return:1
+&lt;span class=&quot;token assign-left variable&quot;&gt;depth&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; CN &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; localhost
+verify return:1
+Correct&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
+-----BEGIN RSA PRIVATE KEY-----
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+-----END RSA PRIVATE KEY-----
+bandit16@bandit:~$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/oussama
+bandit16@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp/oussama
+bandit16@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;nano&lt;/span&gt; id_rsa &lt;span class=&quot;token comment&quot;&gt;# paste the content and hit ctrl+o then ctrl+x&lt;/span&gt;
+bandit16@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;600&lt;/span&gt; id_rsa
+bandit16@bandit:/tmp/oussama$ &lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-i&lt;/span&gt; id_rsa bandit17@localhost
+bandit17@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit17
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 17 → 18&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This challenge is straightforward, we have two files (passwords.old, passwords.new), the password for the next level is in passwords.new and is the only line that has been changed between the two files.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit17@bandit:~$ &lt;span class=&quot;token function&quot;&gt;diff&lt;/span&gt; passwords.old passwords.new
+42c42
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; w0Yfolrc5bwjS4qw5mq1nnQi6mF03bii
+---
+&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 18 → 19&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge we are logged out as soon as we log in, the password is saved in a file called &quot;readme&quot; in the home directory, so we can simply echo out the content without connecting.
+&lt;br&gt;
+We are executing commands over ssh, this article can be useful:
+&lt;br&gt;
+&lt;a href=&quot;https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;oussama@oussama:~$ &lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; bandit18@bandit.labs.overthewire.org &lt;span class=&quot;token parameter variable&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2220&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;cat ~/readme&apos;&lt;/span&gt;
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit18@bandit.labs.overthewire.orgs password:
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 19 → 20&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge, we will learn about the &quot;setuid&quot; (set user ID) which is a special type of file permission when set a user may execute the binary with a level of access that matches the user who owns the file.
+&lt;br&gt;
+&lt;a href=&quot;https://www.computerhope.com/jargon/s/setuid.htm&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit19@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+bandit20-do
+bandit19@bandit:~$ ./bandit20-do
+Run a &lt;span class=&quot;token builtin class-name&quot;&gt;command&lt;/span&gt; as another user.
+  Example: ./bandit20-do &lt;span class=&quot;token function&quot;&gt;id&lt;/span&gt;
+bandit19@bandit:~$ ./bandit20-do &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit20
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 20 → 21&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge we are given a binary that has a setuid (like the previous challenge), this binary needs a port as an argument, it will connect to the service running on that port, reads the current password, if it matches, it will provide the next password.
+&lt;br&gt;
+So we need to create a service that when connected to, provides the current password, and run it in the background so continue using our session.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit20@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+suconnect
+bandit20@bandit:~$ ./suconnect
+Usage: ./suconnect &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;portnumber&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.
+bandit20@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;[REDACTED - Current Password]&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; netcat &lt;span class=&quot;token parameter variable&quot;&gt;-lp&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4444&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;15831&lt;/span&gt;
+bandit20@bandit:~$ ./suconnect &lt;span class=&quot;token number&quot;&gt;4444&lt;/span&gt;
+Read: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - Current Password&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+Password matches, sending next password
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED - New Password&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;+  Done &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;[REDACTED - Current Password]&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; netcat &lt;span class=&quot;token parameter variable&quot;&gt;-lp&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4444&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 21 → 22&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge we will get to learn cronjobs, it&apos;s a scheduling utility present in unix-like systems.
+&lt;br&gt;
+We need to list the crons, check what scripts are being executed and based on that we can solve the challenge.
+&lt;br&gt;
+This one was straightforward, the cronjob will execute a script to copy the next level password to the &quot;tmp&quot; directory and we can simply echo out its content.
+&lt;br&gt;
+Knowing how cronjobs work and how to create/configure them is a must-have skill, so here are some resources:
+&lt;br&gt;
+&lt;a href=&quot;https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.freecodecamp.org/news/cron-jobs-in-linux&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit21@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /etc/cron.d
+bandit21@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+cronjob_bandit15_root  cronjob_bandit22  cronjob_bandit24
+cronjob_bandit17_root  cronjob_bandit23  cronjob_bandit25_root
+bandit21@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; cronjob_bandit22
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&gt;&lt;/span&gt; /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&gt;&lt;/span&gt; /dev/null
+bandit21@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt; /usr/bin/cronjob_bandit22.sh &lt;span class=&quot;token comment&quot;&gt;# we can execute and read the script, so let&apos;s have a look&lt;/span&gt;
+-rwxr-x--- &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; bandit22 bandit21 &lt;span class=&quot;token number&quot;&gt;130&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; /usr/bin/cronjob_bandit22.sh
+bandit21@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /usr/bin/cronjob_bandit22.sh
+&lt;span class=&quot;token comment&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;644&lt;/span&gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit22 &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+bandit21@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 22 → 23&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This challenge is very similar to the previous challenge, but with a more complicated script that we need to understand.
+&lt;br&gt;
+The script is copying the password of whoever user executing it to the &quot;tmp&quot; directory in a file named the md5 hash of the name, if this makes sense.
+&lt;br&gt;
+So in short, the target is the md5 of the user executing the script.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit22@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /etc/cron.d
+bandit22@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+cronjob_bandit15_root  cronjob_bandit22  cronjob_bandit24
+cronjob_bandit17_root  cronjob_bandit23  cronjob_bandit25_root
+bandit22@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; cronjob_bandit23
+@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&gt;&lt;/span&gt; /dev/null
+* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&gt;&lt;/span&gt; /dev/null
+bandit22@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /usr/bin/cronjob_bandit23.sh
+&lt;span class=&quot;token comment&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token assign-left variable&quot;&gt;myname&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;whoami&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;mytarget&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; I am user $myname &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; md5sum &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;   &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Copying passwordfile /etc/bandit_pass/&lt;span class=&quot;token variable&quot;&gt;$myname&lt;/span&gt; to /tmp/&lt;span class=&quot;token variable&quot;&gt;$mytarget&lt;/span&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/&lt;span class=&quot;token variable&quot;&gt;$myname&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/&lt;span class=&quot;token variable&quot;&gt;$mytarget&lt;/span&gt;
+bandit22@bandit:/etc/cron.d$ &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; I am user bandit23 &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; md5sum &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt;   &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+8ca319486bfbbc3663ea0fbe81326349
+bandit22@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /tmp/8ca319486bfbbc3663ea0fbe81326349
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 23 → 24&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Still with the cronjobs challenges, but this time we need to understand and write our first script.
+&lt;br&gt;
+Going through the script (code in the solution), we can see that it&apos;s simply deleting the files of a given directory, in our case &quot;/var/spool/bandit24&quot;, but if the file is owned by the current user it will be executed, which means we need to create a script that copies the password to somewhere we can read it, like the &quot;tmp&quot; directory.
+&lt;br&gt;
+So here are the steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a script.&lt;/li&gt;
+&lt;li&gt;Make the script executable.&lt;/li&gt;
+&lt;li&gt;Create an empty file (where we will be saving our password).&lt;/li&gt;
+&lt;li&gt;Make the file &lt;em&gt;writable&lt;/em&gt; by &quot;others&quot;, remember the script will be run as &quot;bandit24&quot;, so the file permission should be something like xx2, xx3, xx6 or xx7.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can read more about file permissions &lt;a href=&quot;https://www.guru99.com/file-permissions.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit23@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /etc/cron.d
+bandit23@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+cronjob_bandit15_root  cronjob_bandit22  cronjob_bandit24
+cronjob_bandit17_root  cronjob_bandit23  cronjob_bandit25_root
+bandit23@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; cronjob_bandit24
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&gt;&lt;/span&gt; /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&gt;&lt;/span&gt; /dev/null
+bandit23@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /usr/bin/cronjob_bandit24.sh
+&lt;span class=&quot;token comment&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token assign-left variable&quot;&gt;myname&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;whoami&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /var/spool/&lt;span class=&quot;token variable&quot;&gt;$myname&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Executing and deleting all scripts in /var/spool/&lt;span class=&quot;token variable&quot;&gt;$myname&lt;/span&gt;:&quot;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token for-or-select variable&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; * .*&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$i&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;.&quot;&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;$i&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;..&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+        &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Handling &lt;span class=&quot;token variable&quot;&gt;$i&lt;/span&gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;token assign-left variable&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stat&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--format&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;%U&quot;&lt;/span&gt; ./$i&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${owner}&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;bandit23&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+            &lt;span class=&quot;token function&quot;&gt;timeout&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;60&lt;/span&gt; ./&lt;span class=&quot;token variable&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# the line we need to focus in&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-f&lt;/span&gt; ./&lt;span class=&quot;token variable&quot;&gt;$i&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+bandit23@bandit:/etc/cron.d$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/oussamalevel24
+bandit23@bandit:/etc/cron.d$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp/oussamalevel24
+bandit23@bandit:/tmp/oussamalevel24$ &lt;span class=&quot;token function&quot;&gt;nano&lt;/span&gt; script.sh
+&lt;span class=&quot;token comment&quot;&gt;# the content of the script&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit24 &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/oussamalevel24/bandit24
+bandit23@bandit:/tmp/oussamalevel24$ &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; +x script.sh
+bandit23@bandit:/tmp/oussamalevel24$ &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; bandit24
+bandit23@bandit:/tmp/oussamalevel24$ &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; a+w bandit24
+bandit23@bandit:/tmp/oussamalevel24$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; script.sh /var/spool/bandit24
+bandit23@bandit:/tmp/oussamalevel24$ &lt;span class=&quot;token comment&quot;&gt;# wait one minute or so&lt;/span&gt;
+bandit23@bandit:/tmp/oussamalevel24$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; bandit24
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 24 → 25&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge, we need to make another script to create 10000 combinations, so we can &lt;em&gt;brute-force&lt;/em&gt; the service running on port 30002.
+&lt;br&gt;
+The service accepts our current password plus a 4-digit pin separated by a space.
+Example: bandit24_password 1234
+&lt;br&gt;
+Brute forcing is a very common attack that consists of an attacker submitting many passwords or passphrases with the hope of eventually guessing correctly, I highly recommend reading about its techniques and tools here:
+&lt;br&gt;
+&lt;a href=&quot;https://resources.infosecinstitute.com/topic/kali-linux-top-5-tools-for-password-attacks/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://geekflare.com/brute-force-attack-tools/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.tutorialspoint.com/kali_linux/kali_linux_password_cracking_tools.htm&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit24@bandit:~$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/oussamalevel25
+bandit24@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp/oussamalevel25
+bandit24@bandit:/tmp/oussamalevel25$ &lt;span class=&quot;token function&quot;&gt;nano&lt;/span&gt; script.sh
+&lt;span class=&quot;token comment&quot;&gt;# paste the script content, we are simply creating all the possible combinations&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token for-or-select variable&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;0000&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9999&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;# note the use of &gt;&gt; so append and not overwrite&lt;/span&gt;
+        &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ&quot;&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; passwords
+&lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+bandit24@bandit:/tmp/oussamalevel25$ &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; +x script.sh
+bandit24@bandit:/tmp/oussamalevel25$ ./script.sh
+bandit24@bandit:/tmp/oussamalevel25$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; passwords &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;nc&lt;/span&gt; localhost &lt;span class=&quot;token number&quot;&gt;30002&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; result
+bandit24@bandit:/tmp/oussamalevel25$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; result &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;The password&apos;&lt;/span&gt;
+The password of user bandit25 is &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 25 → 26&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge we will need to abuse the &quot;more&quot; command.
+&lt;br&gt;
+More command is used to view the text files in the command prompt, displaying one screen at a time in case the file is large, and the key to the challenge is that it will not finish executing as long as there is more content to be displayed.
+&lt;br&gt;
+Hopefully the solution will make sense.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit25@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt;
+total &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+-r-------- &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; bandit25 bandit25 &lt;span class=&quot;token number&quot;&gt;1679&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; bandit26.sshkey
+bandit25@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-i&lt;/span&gt; bandit26.sshkey bandit26@127.0.0.1
+&lt;span class=&quot;token comment&quot;&gt;# Connection closed immediately&lt;/span&gt;
+bandit25@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/passwd &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;bandit26&quot;&lt;/span&gt;
+bandit26:x:11026:11026:bandit level &lt;span class=&quot;token number&quot;&gt;26&lt;/span&gt;:/home/bandit26:/usr/bin/showtext &lt;span class=&quot;token comment&quot;&gt;# not a regular shell&lt;/span&gt;
+bandit25@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /usr/bin/showtext &lt;span class=&quot;token comment&quot;&gt;# let&apos;s have a look&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;TERM&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;linux
+
+&lt;span class=&quot;token function&quot;&gt;more&lt;/span&gt; ~/text.txt &lt;span class=&quot;token comment&quot;&gt;# we need to find a way not to hit the exit 0&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+bandit25@bandit:~$ &lt;span class=&quot;token comment&quot;&gt;# minimise your terminal so there is always some content for &quot;more&quot; to display and this way we won&apos;t be exiting the script&lt;/span&gt;
+bandit25@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-i&lt;/span&gt; bandit26.sshkey bandit26@127.0.0.1
+bandit25@bandit:~$ &lt;span class=&quot;token comment&quot;&gt;# this time it won&apos;t exit, so let&apos;s abuse more, by entering vim, hit v&lt;/span&gt;
+bandit25@bandit:~$ &lt;span class=&quot;token comment&quot;&gt;# we can use vim to spawn a shell, (make sure you are in command mode by hitting esc) type :set shell=/bin/bash then type :shell, that&apos;s it!&lt;/span&gt;
+bandit26@bandit:~$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit26
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 26 → 27&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This challenge is pretty easy, we have a binary with that special file permission we discussed &quot;setuid&quot;, so whenever executed it runs as the next level user, this way we can simply echo out the password.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit26@bandit:~$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+bandit27-do  text.txt
+bandit26@bandit:~$ ./bandit27-do
+Run a &lt;span class=&quot;token builtin class-name&quot;&gt;command&lt;/span&gt; as another user.
+  Example: ./bandit27-do &lt;span class=&quot;token function&quot;&gt;id&lt;/span&gt;
+bandit26@bandit:~$ ./bandit27-do &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /etc/bandit_pass/bandit27
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 27 → 28&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;In this challenge, we will practice our git skills, so we are given a remote repository that we need to clone and explore.
+&lt;br&gt;
+This level requires some knowledge of what and how &quot;git&quot; works, I highly recommend reading these two articles to get you started:
+&lt;br&gt;
+&lt;a href=&quot;https://www.w3schools.com/git/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.atlassian.com/git&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit27@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp
+bandit27@bandit:/tmp$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; oussamalevel27
+bandit27@bandit:/tmp$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; oussamalevel27
+bandit27@bandit:/tmp/oussamalevel27$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+Cloning into &lt;span class=&quot;token string&quot;&gt;&apos;repo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+Could not create directory &lt;span class=&quot;token string&quot;&gt;&apos;/home/bandit27/.ssh&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+The authenticity of &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;localhost (127.0.0.1)&apos;&lt;/span&gt; cant be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to &lt;span class=&quot;token builtin class-name&quot;&gt;continue&lt;/span&gt; connecting &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;yes/no&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;? &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;
+Failed to &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; the &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; to the list of known hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/home/bandit27/.ssh/known_hosts&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit27-git@localhost password: &lt;span class=&quot;token comment&quot;&gt;# same password as bandit27&lt;/span&gt;
+remote: Counting objects: &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;, done.
+remote: Compressing objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+remote: Total &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, reused &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Receiving objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/3&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+bandit27@bandit:/tmp/oussamalevel27$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+repo
+bandit27@bandit:/tmp/oussamalevel27$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; repo/
+bandit27@bandit:/tmp/oussamalevel27/repo$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+README
+bandit27@bandit:/tmp/oussamalevel27/repo$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; README
+The password to the next level is: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 28 → 29&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Still practising our git skills, this time we need to go one step back to get the password.
+&lt;br&gt;
+This book will help you understand most of the git commands and the need for each one of them:
+&lt;br&gt;
+&lt;a href=&quot;https://books.goalkicker.com/GitBook/&quot;&gt;Read More - Book&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit28@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp
+bandit28@bandit:/tmp$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; oussamalevel28
+bandit28@bandit:/tmp$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; oussamalevel28
+bandit28@bandit:/tmp/oussamalevel28$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone ssh://bandit28-git@localhost/home/bandit28-git/repo
+Cloning into &lt;span class=&quot;token string&quot;&gt;&apos;repo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+Could not create directory &lt;span class=&quot;token string&quot;&gt;&apos;/home/bandit28/.ssh&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+The authenticity of &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;localhost (127.0.0.1)&apos;&lt;/span&gt; cant be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to &lt;span class=&quot;token builtin class-name&quot;&gt;continue&lt;/span&gt; connecting &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;yes/no&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;? &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;
+Failed to &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; the &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; to the list of known hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/home/bandit28/.ssh/known_hosts&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit28-git@localhosts password:
+remote: Counting objects: &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;, done.
+remote: Compressing objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;/6&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+remote: Total &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, reused &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Receiving objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;/9&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+Resolving deltas: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+bandit28@bandit:/tmp/oussamalevel28$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; repo/
+bandit28@bandit:/tmp/oussamalevel28/repo$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+README.md
+bandit28@bandit:/tmp/oussamalevel28/repo$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; README.md
+&lt;span class=&quot;token comment&quot;&gt;# Bandit Notes&lt;/span&gt;
+Some notes &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; level29 of bandit.
+
+&lt;span class=&quot;token comment&quot;&gt;## credentials&lt;/span&gt;
+
+- username: bandit29
+- password: xxxxxxxxxx
+
+bandit28@bandit:/tmp/oussamalevel28/repo$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log
+commit edd935d60906b33f0619605abd1689808ccdd5ee
+Author: Morla Porla &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;morla@overthewire.org&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+Date:   Thu May &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;:14:49 &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; +0200
+
+    fix info leak
+
+commit c086d11a00c0648d095d04c089786efef5e01264
+Author: Morla Porla &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;morla@overthewire.org&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+Date:   Thu May &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;:14:49 &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; +0200
+
+    &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; missing data
+
+commit de2ebe2d5fd1598cd547f4d56247e053be3fdc38
+Author: Ben Dover &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;noone@overthewire.org&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+Date:   Thu May &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;:14:49 &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; +0200
+
+    initial commit of README.md
+bandit28@bandit:/tmp/oussamalevel28/repo$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout c086d11a00c0648d095d04c089786efef5e01264
+Note: checking out &lt;span class=&quot;token string&quot;&gt;&apos;c086d11a00c0648d095d04c089786efef5e01264&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+
+You are &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;detached HEAD&apos;&lt;/span&gt; state. You can &lt;span class=&quot;token function&quot;&gt;look&lt;/span&gt; around, &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; experimental
+changes and commit them, and you can discard any commits you &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+&lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; so &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;now or later&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; by using &lt;span class=&quot;token parameter variable&quot;&gt;-b&lt;/span&gt; with the checkout &lt;span class=&quot;token builtin class-name&quot;&gt;command&lt;/span&gt; again. Example:
+
+  &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout &lt;span class=&quot;token parameter variable&quot;&gt;-b&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;new-branch-name&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+HEAD is now at c086d11&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; missing data
+bandit28@bandit:/tmp/oussamalevel28/repo$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; README.md
+&lt;span class=&quot;token comment&quot;&gt;# Bandit Notes&lt;/span&gt;
+Some notes &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; level29 of bandit.
+
+&lt;span class=&quot;token comment&quot;&gt;## credentials&lt;/span&gt;
+
+- username: bandit29
+- password: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 29 → 30&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Still with the git challenges, this time we will play around with branches.
+&lt;br&gt;
+Every concept is well explained in the book above (previous challenge), but still, if you do want a quick article here is
+&lt;a href=&quot;https://www.atlassian.com/git/tutorials/using-branches&quot;&gt;one&lt;/a&gt; and here is an
+&lt;a href=&quot;https://learngitbranching.js.org/&quot;&gt;interactive tutorial&lt;/a&gt; as well.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit29@bandit:~$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/oussamalevel29
+bandit29@bandit:~$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /tmp/oussamalevel29
+bandit29@bandit:/tmp/oussamalevel29$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone ssh://bandit29-git@localhost/home/bandit29-git/repo
+Cloning into &lt;span class=&quot;token string&quot;&gt;&apos;repo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+Could not create directory &lt;span class=&quot;token string&quot;&gt;&apos;/home/bandit29/.ssh&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+The authenticity of &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;localhost (127.0.0.1)&apos;&lt;/span&gt; cant be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to &lt;span class=&quot;token builtin class-name&quot;&gt;continue&lt;/span&gt; connecting &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;yes/no&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;? &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;
+Failed to &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; the &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; to the list of known hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/home/bandit29/.ssh/known_hosts&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit29-git@localhosts password:
+remote: Counting objects: &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;, done.
+remote: Compressing objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;/11&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+remote: Total &lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, reused &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Receiving objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;16&lt;/span&gt;/16&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+Resolving deltas: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+bandit29@bandit:/tmp/oussamalevel29$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+README.md
+bandit29@bandit:/tmp/oussamalevel29$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; README.md
+&lt;span class=&quot;token comment&quot;&gt;# Bandit Notes&lt;/span&gt;
+Some notes &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; bandit30 of bandit.
+
+&lt;span class=&quot;token comment&quot;&gt;## credentials&lt;/span&gt;
+
+- username: bandit30
+- password: &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;no passwords &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; production&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+bandit29@bandit:/tmp/oussamalevel29$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; branch &lt;span class=&quot;token parameter variable&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# listing only the remote branches, you can use -a as well&lt;/span&gt;
+  origin/HEAD -&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; origin/master
+  origin/dev
+  origin/master
+  origin/sploits-dev
+bandit29@bandit:/tmp/oussamalevel29$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout dev
+Branch dev &lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; up to track remote branch dev from origin.
+Switched to a new branch &lt;span class=&quot;token string&quot;&gt;&apos;dev&apos;&lt;/span&gt;
+bandit29@bandit:/tmp/oussamalevel29$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+code  README.md
+bandit29@bandit:/tmp/oussamalevel29$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; README.md
+&lt;span class=&quot;token comment&quot;&gt;# Bandit Notes&lt;/span&gt;
+Some notes &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; bandit30 of bandit.
+
+&lt;span class=&quot;token comment&quot;&gt;## credentials&lt;/span&gt;
+
+- username: bandit30
+- password: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 30 → 31&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;Well, we are still doing git challenges, and in this one, we will learn about &quot;tags&quot;.
+&lt;br&gt;
+Sometimes, when a commit is an import change, we may want to bookmark it, give it a label/alias, just to mark that progress in code, for example name it &quot;v1.0&quot;, to do so, we use tags.
+&lt;br&gt;
+In simple words, tags are labels that can be used to identify a specific commit.
+&lt;br&gt;
+I highly recommend reading more about tags:
+&lt;br&gt;
+&lt;a href=&quot;https://linuxhint.com/use-git-tags/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://www.freecodecamp.org/news/git-tag-explained-how-to-add-remove/&quot;&gt;Read More - Article&lt;/a&gt;
+&lt;br&gt;
+And the book I shared in the previous challenges.&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit29@bandit:~$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/oussamalevel30 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$_&lt;/span&gt;
+bandit30@bandit:/tmp/oussamalevel30$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone ssh://bandit30-git@localhost/home/bandit30-git/repo
+Cloning into &lt;span class=&quot;token string&quot;&gt;&apos;repo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+Could not create directory &lt;span class=&quot;token string&quot;&gt;&apos;/home/bandit30/.ssh&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+The authenticity of &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;localhost (127.0.0.1)&apos;&lt;/span&gt; cant be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to &lt;span class=&quot;token builtin class-name&quot;&gt;continue&lt;/span&gt; connecting &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;yes/no&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;? &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;
+Failed to &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; the &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; to the list of known hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/home/bandit30/.ssh/known_hosts&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit30-git@localhosts password:
+remote: Counting objects: &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;, done.
+remote: Total &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, reused &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Receiving objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+bandit30@bandit:/tmp/oussamalevel30$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; repo/
+bandit30@bandit:/tmp/oussamalevel30/repo$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; tag
+secret
+bandit30@bandit:/tmp/oussamalevel30/repo$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; show secret
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;REDACTED&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 31 → 32&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This is the last &quot;git&quot; challenge, we need to push a txt file with a specific name and content.
+&lt;br&gt;
+But, there is a &quot;.gitignore&quot; file that ignores all txt files, so we need to get rid of it.
+&lt;br&gt;
+This file is really useful in our projects, so maybe read this article:
+&lt;br&gt;
+&lt;a href=&quot;https://www.pluralsight.com/guides/how-to-use-gitignore-file&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;bandit31@bandit:~$ &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/oussamalevel31 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;clear&lt;/span&gt;
+bandit31@bandit:/tmp/oussamalevel31$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone ssh://bandit31-git@localhost/home/bandit31-git/repo
+Cloning into &lt;span class=&quot;token string&quot;&gt;&apos;repo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+Could not create directory &lt;span class=&quot;token string&quot;&gt;&apos;/home/bandit31/.ssh&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+The authenticity of &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;localhost (127.0.0.1)&apos;&lt;/span&gt; cant be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to &lt;span class=&quot;token builtin class-name&quot;&gt;continue&lt;/span&gt; connecting &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;yes/no&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;? &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;
+Failed to &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; the &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; to the list of known hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/home/bandit31/.ssh/known_hosts&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit31-git@localhosts password:
+remote: Counting objects: &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;, done.
+remote: Compressing objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/3&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+remote: Total &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, reused &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Receiving objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;/4&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;383&lt;/span&gt; bytes &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; bytes/s, done.
+bandit31@bandit:/tmp/oussamalevel31$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; repo/
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+README.md
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; README.md
+This &lt;span class=&quot;token function&quot;&gt;time&lt;/span&gt; your task is to push a &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; to the remote repository.
+
+Details:
+    File name: key.txt
+    Content: &lt;span class=&quot;token string&quot;&gt;&apos;May I come in?&apos;&lt;/span&gt;
+    Branch: master
+
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; .gitignore
+*.txt
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; .gitignore
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;May I come in?&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; key.txt
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit &lt;span class=&quot;token parameter variable&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Added key.txt&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;master f312353&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Added key.txt
+ &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; files changed, &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; insertion&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; deletion&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;-&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+ delete mode &lt;span class=&quot;token number&quot;&gt;100644&lt;/span&gt; .gitignore
+ create mode &lt;span class=&quot;token number&quot;&gt;100644&lt;/span&gt; key.txt
+bandit31@bandit:/tmp/oussamalevel31/repo$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push origin master
+Could not create directory &lt;span class=&quot;token string&quot;&gt;&apos;/home/bandit31/.ssh&apos;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+The authenticity of &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;localhost (127.0.0.1)&apos;&lt;/span&gt; cant be established.
+ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.
+Are you sure you want to &lt;span class=&quot;token builtin class-name&quot;&gt;continue&lt;/span&gt; connecting &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;yes/no&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;? &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;
+Failed to &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; the &lt;span class=&quot;token function&quot;&gt;host&lt;/span&gt; to the list of known hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/home/bandit31/.ssh/known_hosts&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;.
+This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
+
+bandit31-git@localhosts password:
+Counting objects: &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;, done.
+Delta compression using up to &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; threads.
+Compressing objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/2&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, done.
+Writing objects: &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/3&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;289&lt;/span&gt; bytes &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; bytes/s, done.
+Total &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;, reused &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;delta &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+remote: &lt;span class=&quot;token comment&quot;&gt;### Attempting to validate files... ####&lt;/span&gt;
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+remote: Well done&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; Here is the password &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; the next level:
+remote: &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;56a9bf19c63d650ce78e6ec0354ee45e&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+remote:
+remote: .oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.
+remote:
+To ssh://localhost/home/bandit31-git/repo
+ &lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;remote rejected&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; master -&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; master &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pre-receive hook declined&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+error: failed to push some refs to &lt;span class=&quot;token string&quot;&gt;&apos;ssh://bandit31-git@localhost/home/bandit31-git/repo&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Level 32 → 33&lt;/h2&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;This is the last challenge, where we need to escape a special shell that executes any given command as uppercase, and as you know a binary&apos;s name is case sensitive, so &quot;ls&quot; is different from &quot;LS&quot;.
+&lt;br&gt;
+Well, the idea here is to use something that won&apos;t be affected by this conversion.
+&lt;br&gt;
+After some Googling, I found out that there is a special environment variable that stores the path to the shell so it stores &quot;/bin/sh&quot; or &quot;/bin/bash&quot; depending on shell being used, so the idea is to pass the &quot;$0&quot; and hope it re-executes the shell.
+&lt;br&gt;
+Some helpful resources:
+&lt;br&gt;
+&lt;a href=&quot;https://unix.stackexchange.com/questions/280454/what-is-the-meaning-of-0-in-the-bash-shell&quot;&gt;Read More - Discussion&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;https://bash.cyberciti.biz/guide/$0&quot;&gt;Read More - Article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Solution&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;WELCOME TO THE UPPERCASE &lt;span class=&quot;token environment constant&quot;&gt;SHELL&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+sh: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;: LS: not found
+&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$0&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;-l&lt;/span&gt;
+total &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;
+-rwsr-x--- &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; bandit33 bandit32 &lt;span class=&quot;token number&quot;&gt;7556&lt;/span&gt; May  &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;2020&lt;/span&gt; uppershell
+$ &lt;span class=&quot;token function&quot;&gt;whoami&lt;/span&gt;
+bandit33&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item></channel></rss>
