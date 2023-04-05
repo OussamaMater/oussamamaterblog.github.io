@@ -1,4 +1,152 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 23 Jan 2023 22:11:28 GMT</lastBuildDate><item><title><![CDATA[OverTheWire - Bandit]]></title><description><![CDATA[This is a guide that helps you through the challenges, so you can follow up and actually do the challenges, so no passwords will be provided…]]></description><link>null/overthewire/</link><guid isPermaLink="false">null/overthewire/</guid><pubDate>Sun, 01 May 2022 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;This is a guide that helps you through the challenges, so you can follow up and actually do the challenges, so no passwords will be provided.&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 05 Apr 2023 15:20:07 GMT</lastBuildDate><item><title><![CDATA[Laravel Real-Time Notifications with SSE]]></title><description><![CDATA[Say Hi to Server-Sent Events If you've ever needed to implement a real-time feature in your web application, you're likely familiar with the…]]></description><link>null/laravel-sse/</link><guid isPermaLink="false">null/laravel-sse/</guid><pubDate>Wed, 05 Apr 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Say Hi to Server-Sent Events&lt;/h2&gt;
+&lt;p&gt;If you&apos;ve ever needed to implement a real-time feature in your web application, you&apos;re likely familiar with the complexity of using WebSockets or the resource-intensive nature of long-polling.&lt;/p&gt;
+&lt;p&gt;Recently, I found myself in a situation where neither of them was an option, that&apos;s when I discovered &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events&quot;&gt;Server-Sent Events&lt;/a&gt; (SSE), not only it was super easy to set up, but it also allowed me to achieve real-time communication in a fraction of the time it would have taken with WebSockets, and in this article, we will create a real-time notification using this technology.&lt;/p&gt;
+&lt;h2&gt;How does SSE works?&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 620px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8f1cf9dcb7014b050e7e1248a413b132/935bc/sse.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.92405063291139%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAe20Io//xAAYEAACAwAAAAAAAAAAAAAAAAAQEQABIf/aAAgBAQABBQJ65QQ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGRABAQADAQAAAAAAAAAAAAAAAQAQESFh/9oACAEBAAE/IX1ho9k6tdwC/9oADAMBAAIAAwAAABCQD//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABwQAAICAwEBAAAAAAAAAAAAAAABESExQVFxkf/aAAgBAQABPxBiZafCJGdcOgvXI5vexxWSnJ//2Q==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sse&quot;
+        title=&quot;sse&quot;
+        src=&quot;/static/8f1cf9dcb7014b050e7e1248a413b132/935bc/sse.jpg&quot;
+        srcset=&quot;/static/8f1cf9dcb7014b050e7e1248a413b132/ff44c/sse.jpg 158w,
+/static/8f1cf9dcb7014b050e7e1248a413b132/a6688/sse.jpg 315w,
+/static/8f1cf9dcb7014b050e7e1248a413b132/935bc/sse.jpg 620w&quot;
+        sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;SSE allows a server to send real-time updates to a web page without the need for the client to constantly poll for new information.&lt;/p&gt;
+&lt;p&gt;The flow is simple, the client establishes a connection with the server, and the server send updates to the client over that connection as they occur, these updates are sent as &quot;events,&quot; which consist of a message and an optional event name.&lt;/p&gt;
+&lt;p&gt;The client then can react to these events accordingly, by displaying a notification or updating the page.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SSE is a good alternative to WebSockets only if your use case require one-way communication, from Server to Client.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Let&apos;s use it in a Laravel project&lt;/h2&gt;
+&lt;p&gt;Here is a preview of what we are going to build today&lt;/p&gt;
+&lt;img src=&quot;https://s2.gifyu.com/images/preview3650fa954fa82f3d.gif&quot; width=&quot;800&quot; height=&quot;500&quot;&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;I will be using &lt;a href=&quot;https://github.com/qruto/laravel-wave&quot;&gt;Laravel-Wave&lt;/a&gt; package to implement SSE.&lt;/p&gt;
+&lt;p&gt;Let&apos;s start by creating a new Laravel application&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;composer create-project laravel/laravel laravel-sse&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For the server side setup we just need to pull the package&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;composer require qruto/laravel-wave&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For the client side setup we need to install &lt;code class=&quot;language-text&quot;&gt;Laravel Echo&lt;/code&gt; and the adapter that comes with the package&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install --save-dev laravel-echo laravel-wave&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I will also install &lt;code class=&quot;language-text&quot;&gt;sweetalert2&lt;/code&gt; for this demo&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm install --save-dev sweetalert2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Broadcast Notifications&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Make sure to configure Laravel to broadcast events, &lt;a href=&quot;https://laravel.com/docs/10.x/broadcasting#broadcast-service-provider&quot;&gt;docs&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let&apos;s create a new Laravel event&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;php artisan make&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;event RealTimeNotification&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We need to make few changes to this event&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make sure it implements the &lt;code class=&quot;language-text&quot;&gt;ShouldBroadcast&lt;/code&gt; interface.&lt;/li&gt;
+&lt;li&gt;Make sure it returns &lt;code class=&quot;language-text&quot;&gt;Channel&lt;/code&gt; instead of &lt;code class=&quot;language-text&quot;&gt;PrivateChannel&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token php language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;App&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Events&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Broadcasting&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Channel&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Broadcasting&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;InteractsWithSockets&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Contracts&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Broadcasting&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;ShouldBroadcast&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Foundation&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Events&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Dispatchable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Queue&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;SerializesModels&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name-definition class-name&quot;&gt;RealTimeNotification&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ShouldBroadcast&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Dispatchable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; InteractsWithSockets&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; SerializesModels&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Create a new event instance.
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function-definition function&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword type-declaration&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$message&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array&amp;lt;int, \Illuminate\Broadcasting\Channel&gt;
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function-definition function&quot;&gt;broadcastOn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword return-type&quot;&gt;array&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Channel&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&apos;events&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we need to configure &lt;code class=&quot;language-text&quot;&gt;Laravel Echo&lt;/code&gt; to listen to the newly created event.&lt;/p&gt;
+&lt;p&gt;In your &lt;code class=&quot;language-text&quot;&gt;bootstrap.js&lt;/code&gt;, add the following code&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Swal &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sweetalert2&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Echo &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;laravel-echo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; WaveConnector &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;laravel-wave&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Echo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Echo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token literal-property property&quot;&gt;broadcaster&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; WaveConnector &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Echo&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;channel&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;events&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;RealTimeNotification&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        Swal&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;fire&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token literal-property property&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;top&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token literal-property property&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;success&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token literal-property property&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;message&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token literal-property property&quot;&gt;showConfirmButton&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now let&apos;s run &lt;code class=&quot;language-text&quot;&gt;Vite&lt;/code&gt; development server&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;npm run dev&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Believe it or not, that&apos;s all you need to do to receive real-time notifications!&lt;/p&gt;
+&lt;h3&gt;Test the notifications&lt;/h3&gt;
+&lt;p&gt;First let&apos;s add a route in our &lt;code class=&quot;language-text&quot;&gt;web.php&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token class-name static-context&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&apos;real-time-notifications&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string single-quoted-string&quot;&gt;&apos;sse&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In your &lt;code class=&quot;language-text&quot;&gt;resources/views/see.blade.php&lt;/code&gt; add the following code&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token doctype&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&quot;token doctype-tag&quot;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&quot;token name&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;html&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;en&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;head&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;meta&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;charset&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;UTF-8&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;meta&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;viewport&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;width=device-width, initial-scale=1.0&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;meta&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;http-equiv&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;X-UA-Compatible&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;ie=edge&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;title&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Real Time Notifications&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;title&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;script&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;//cdn.jsdelivr.net/npm/sweetalert2@11&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token script&quot;&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;head&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+    @vite(&apos;resources/js/app.js&apos;)
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;body&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now all what&apos;s left to do is to dispatch the &lt;code class=&quot;language-text&quot;&gt;RealTimeNotification&lt;/code&gt; event&lt;/p&gt;
+&lt;p&gt;Start &lt;code class=&quot;language-text&quot;&gt;tinker&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;php artisan tinker&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Dispatch the event&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token function&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name class-name-fully-qualified&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;App&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Events&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;RealTimeNotification&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string double-quoted-string&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You should see the alert popping up, like the preview above!&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;SSEs are simple to set up and use, but they may not be appropriate for every project, as they are unidirectional.&lt;/p&gt;
+&lt;p&gt;Now that you know about them, it&apos;s up to you to decide between the straightforwardness of SSEs, which come with limitations, or the versatility of WebSockets, which is usable for all use cases but complex to implement.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[OverTheWire - Bandit]]></title><description><![CDATA[This is a guide that helps you through the challenges, so you can follow up and actually do the challenges, so no passwords will be provided…]]></description><link>null/overthewire/</link><guid isPermaLink="false">null/overthewire/</guid><pubDate>Sun, 01 May 2022 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;This is a guide that helps you through the challenges, so you can follow up and actually do the challenges, so no passwords will be provided.&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;Level 0&lt;/h2&gt;
 &lt;h3&gt;Explanation&lt;/h3&gt;
 &lt;p&gt;The goal of this challenge is to connect to the provided server via ssh.
