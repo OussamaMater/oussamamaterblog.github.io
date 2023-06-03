@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 03 Jun 2023 17:13:57 GMT</lastBuildDate><item><title><![CDATA[VS Code and Laravel Pint - 2 Methods]]></title><description><![CDATA[Laravel Pint For those of you who are not familiar with , it an opinionated PHP code style fixer. Pint is built on top of PHP-CS-Fixer and…]]></description><link>null/vscode-and-laravel-pint/</link><guid isPermaLink="false">null/vscode-and-laravel-pint/</guid><pubDate>Sat, 03 Jun 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Laravel Pint&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 03 Jun 2023 17:26:02 GMT</lastBuildDate><item><title><![CDATA[VS Code and Laravel Pint - 2 Methods]]></title><description><![CDATA[Laravel Pint  For those of you who are not familiar with , it an opinionated PHP code style fixer. Pint is built on top of PHP-CS-Fixer and…]]></description><link>null/vscode-and-laravel-pint/</link><guid isPermaLink="false">null/vscode-and-laravel-pint/</guid><pubDate>Sat, 03 Jun 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Laravel Pint&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/591566a1af50a264936558fd28662b1e/d438d/pint.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.139240506329116%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABwklEQVR42n2OS2/TQBSFbxYVEqC2kZuoLY+a+v2Ix/aM7XFsJ8EB0ixaZQGLqmxZsUJssPoD+I9ILGvBmpegsS+ykyDKgsWnM/ecOXcGVEG7G8T0rUT9S8kJ3kmEFTJhxbFDCytMCprlhZtMCjIcF36Wt16TNffWNJ1LyWFv9kV5G3aFnh6MJ0jSCcokRMXjqHhRi0ZjNIIEDTZEnQ3bc+Nt8g2qz1F2Q9y799CGnV7fUH3+XWfDWg/ia53FS9Xnf1C8aKk2NPNGb3Kt+ryW3fCLcHB/ALu9fUNxw58qbV6K6gbFa5TXGo1X+Lyd18V/qbTVD78Jhw9sAOga6Vn24/X7BS5ezZY6TSorSiuN8kpxw0rxoqZQ6SyuBnxUxdOTys/yKnz8rCXKZ8t4OsdBlH293e3ZcOuOYDpJWp9dnOPi4iU+XbzA+fNzTGenGOYzjPITjJ/M0eYZWmGKTjxGm49aZaMpemmOdDRFM0h+7fQPHdgW9iTRdD+KpvfpkeVdSQO/lBxayoSVihuUCmGl7LBSNN3yyCTlkUFWapLWE033SrTcz6JJPnT7ByoAwBYAHAOAAQD6/+h0Ojf4KzPWO7Z+A1RdxdZK/ePZAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;pint&quot;
+        title=&quot;pint&quot;
+        src=&quot;/static/591566a1af50a264936558fd28662b1e/f058b/pint.png&quot;
+        srcset=&quot;/static/591566a1af50a264936558fd28662b1e/c26ae/pint.png 158w,
+/static/591566a1af50a264936558fd28662b1e/6bdcf/pint.png 315w,
+/static/591566a1af50a264936558fd28662b1e/f058b/pint.png 630w,
+/static/591566a1af50a264936558fd28662b1e/40601/pint.png 945w,
+/static/591566a1af50a264936558fd28662b1e/78612/pint.png 1260w,
+/static/591566a1af50a264936558fd28662b1e/d438d/pint.png 2290w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;For those of you who are not familiar with &lt;a href=&quot;https://laravel.com/docs/10.x/pint&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Laravel Pint&lt;/code&gt;&lt;/a&gt;, it an opinionated PHP code style fixer.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Pint is built on top of PHP-CS-Fixer and makes it simple to ensure that your code style stays clean and consistent.&lt;/p&gt;
