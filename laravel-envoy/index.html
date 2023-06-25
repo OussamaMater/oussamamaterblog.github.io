@@ -44,6 +44,9 @@
 <p>Laravel Envoy is a tool for executing common tasks you run on your remote servers.</p>
 </blockquote>
 <p>I believe <code class="language-text">Envoy</code> is underrated, I don't see it being used very often, even though I have always found it super useful. In this article, we will explore how <code class="language-text">Envoy</code> can help increase your productivity🚀.</p>
+<blockquote>
+<p>Laravel Envoy is not exclusive to Laravel developers or limited to Laravel projects, <strong>anyone</strong> can use it ❤️.</p>
+</blockquote>
 <p>First, let's discuss two key concepts in <code class="language-text">Envoy</code>:</p>
 <ol>
 <li><strong>Tasks</strong>: which represents a specific action like updating the server or cloning a repository.</li>
@@ -51,7 +54,7 @@
 </ol>
 <p>That's all you need to know for now, you can always read about all the features in the <a href="https://laravel.com/docs/10.x/envoy">docs</a>.</p>
 <h2>What are we automating?</h2>
-<p>In this article, we will automate 2 things most developers do when deploying a <code class="language-text">Laravel</code> application:</p>
+<p>In this article, we will automate 2 things most developers do when deploying their application:</p>
 <ol>
 <li>Configuring Nginx.</li>
 <li>Generating SSH keys and adding them to GitHub to be able to access private repositories.</li>
@@ -70,7 +73,7 @@
 </blockquote>
 <p>Now create a file called <code class="language-text">Envoy.blade.php</code>. Yes we will be using the <code class="language-text">Blade</code> syntax, super cool right?</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">touch</span> Envoy.blade.php</code></pre></div>
-<p>That will do it, let's start automating 😁</p>
+<p>That's it! All you need is a single script. It doesn't have to be specific to Laravel or any Laravel related project. Let's start automating! 😁</p>
 <h2>Configure Nginx</h2>
 <p>We have a brand new server, and we want to setup Nginx. If we break down the process it would be like:</p>
 <ol>
@@ -115,8 +118,8 @@
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php">@<span class="token class-name type-declaration">setup</span>
     <span class="token variable">$application_name</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'your-application-name'</span><span class="token punctuation">;</span>
 @endsetup</code></pre></div>
-<p>Now we can move to the third task <code class="language-text">copy-nginx-stub</code>. We will use the Nginx configuration file provided by the <a href="https://laravel.com/docs/10.x/deployment#nginx">docs</a>, with few tweaks.</p>
-<p>So, in your directory, run the following command:</p>
+<p>Now we can move to the third task <code class="language-text">copy-nginx-stub</code>. In my case, I am deploying a Laravel application, so I will use the Nginx configuration file provided by the <a href="https://laravel.com/docs/10.x/deployment#nginx">docs</a>, with few tweaks.  If you're deploying a different application, you can apply the same concept to your own configuration file.</p>
+<p>In the directory we just created, run the following command:</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">mkdir</span> stubs<span class="token punctuation">;</span> <span class="token function">nano</span> stubs/nginx.conf</code></pre></div>
 <p>Then, paste the following content into the editor, save it, and exit:</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php">server <span class="token punctuation">{</span>
@@ -151,7 +154,7 @@
         deny all<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p>The <code class="language-text">public_ip</code> and <code class="language-text">app_name</code> are placeholders for now and will be  automatically updated with our variables.</p>
+<p>The <code class="language-text">public_ip</code> and <code class="language-text">app_name</code> are placeholders for now and will be automatically updated with our variables.</p>
 <p>Let's move on to writing the task itself:</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php">@<span class="token function">task</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'copy-nginx-stub'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string single-quoted-string">'on'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'local'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
     scp <span class="token operator">-</span><span class="token constant">P</span><span class="token punctuation">{</span><span class="token punctuation">{</span> <span class="token variable">$production_port</span> <span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token operator">-</span>r <span class="token operator">.</span><span class="token operator">/</span>stubs<span class="token operator">/</span>nginx<span class="token operator">.</span>conf
