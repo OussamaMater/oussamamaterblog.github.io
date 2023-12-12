@@ -45,8 +45,8 @@
 <blockquote>
 <p>Look at me, a scary name 👻, but I'm pretty straightforward.</p>
 </blockquote>
-<p>Imagine you're a high school student with a major crush on a girl. The catch? You're shy, wishing she would send a friend request your way instead. What if there was a way for her to unknowingly act as if she were you, opening your profile, and hitting the "Add friend" button? Wouldn't that be cool? Well, let's make it work 😈</p>
-<p>The mission: get her to act as if she is you without her realizing it.</p>
+<p>Imagine you're a high school student with a major crush on a girl. The catch? You're shy, wishing she would send a friend request your way instead. Wouldn't that be cool? Well, let's make it work 😈</p>
+<p>The mission: Get her to act as if she is you without her realizing it.</p>
 <p>So, you'd create a simple web page featuring cute dog pics (or whatever she's into). When she loads this page, a request triggers in the background, this request is crafted by you. For instance, it could be a POST request to an endpoint that adds whatever is given in the payload as a friend. In our case, you'd request to add yourself as her friend (I hate to say it, but you have to use JavaScript). Sneakily, you'll share this link, maybe through her friends or, well, that part's up to you 😛. She receives the link, clicks it, the code executes, and the request is sent to the server using <em>her cookies</em> and <em>her active session</em>. This happens because <strong>cookies are automatically sent with every single request</strong>, and this is what enables the vulnerability. If she's logged in (most likely), she unknowingly sends you that friend request. And that, my friend, is CSRF in action.</p>
 <blockquote>
 <p>Note that there are certain <a href="https://www.invicti.com/learn/cookie-security-flags/">cookie security flags</a> we set to prevent this behavior, but we won't be discussing about them for now.</p>
@@ -123,7 +123,7 @@
 </span></code></pre></div>
 <p>Like every middleware, we are interested in the <code class="language-text">handle()</code> method. You can see several checks are performed. If any of these checkes pass, Laravel is happy:</p>
 <ul>
-<li><code class="language-text">isReading()</code>: This checks if the request uses an HTTP read verb (<code class="language-text">HEAD</code>, <code class="language-text">GET</code> and <code class="language-text">OPTIONS</code>), that is why you have never encountered this issue when making one these requests;</li>
+<li><code class="language-text">isReading()</code>: This checks if the request uses an HTTP read verb (<code class="language-text">HEAD</code>, <code class="language-text">GET</code> and <code class="language-text">OPTIONS</code>), that is why you have never encountered this issue when making one these of requests;</li>
 <li><code class="language-text">runningUnitTests()</code>: As you might have guessed, this checks if the application is running in console and the request is made from tests, there is no absolute need to verify the token (assuming you write tests 👀);</li>
 <li><code class="language-text">inExceptArray()</code>: Remember the <code class="language-text">$except</code> array in the <code class="language-text">VerifyCsrfToken</code> middleware we previously explored? This checks if the current route is define in the array and should be excluded from the token verification (don't mess with it unless you know what you are doing); and finally</li>
 <li><code class="language-text">tokensMatch()</code>: This is where the magic happens. It checks if tokens match. If all the preceding checks return <code class="language-text">false</code>, we're likely making a write request, and triggering this logic. This step is where the exception is usually thrown, so let's take a closer look.</li>
