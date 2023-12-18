@@ -9,6 +9,39 @@
         gtag('config', 'G-2LRDH83LP2', {"send_page_view":false});
       }
       </script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><header class="global-header"><a class="header-link-home" href="/">cd ..</a></header><main><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">Laravel Under The Hood - Facades</h1><p>December 18, 2023</p></header><section itemProp="articleBody"><h2>Hello <code class="language-text">Facades</code> 👋</h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/b2a88c2c1f6e112419b5380d4b23ba89/0f882/cover.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25.316455696202528%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA3ElEQVR42o2Q3UrDQBSE8w6SZvfsbkzPJkVaWhXbhgb8QVARQUFE0EuvfP8X+GQ3VbzsxTDDHBg+TvF1POWzVqIog1dWTilNpDLK5EAFG/E25ly81cqdV56C8l4rH7XirDKxkWovI23Wb/7rbaQ0CSbSyJiLh6A8B+U+KN+NMkhDE5f0u1tOzwcu1lds+htWZzvWm+vcLZbbfF8se46qKeWeLhO+BOW1Vi796JLopEX8DOs6xHfZxzx2Vlqsn+Fcx1xiJkx0ibo4kXHoMSiaxg78XxowRpm7SPdv8Af7c4wZxArhcgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="cover"
+        title="cover"
+        src="/static/b2a88c2c1f6e112419b5380d4b23ba89/f058b/cover.png"
+        srcset="/static/b2a88c2c1f6e112419b5380d4b23ba89/c26ae/cover.png 158w,
+/static/b2a88c2c1f6e112419b5380d4b23ba89/6bdcf/cover.png 315w,
+/static/b2a88c2c1f6e112419b5380d4b23ba89/f058b/cover.png 630w,
+/static/b2a88c2c1f6e112419b5380d4b23ba89/40601/cover.png 945w,
+/static/b2a88c2c1f6e112419b5380d4b23ba89/78612/cover.png 1260w,
+/static/b2a88c2c1f6e112419b5380d4b23ba89/0f882/cover.png 1584w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
 <p>You've just installed a fresh Laravel application, booted it up, and got the welcome page. Like everyone else, you try to see how it's rendered, so you hop into the <code class="language-text">web.php</code> file and encounter this code</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
@@ -19,6 +52,12 @@
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre></div>
 <p>It's obvious how we got the welcome view, but you're curious about how Laravel's router works, so you decide to dive into the code. The initial assumption is: There's a <code class="language-text">Route</code> class on which we're calling a static method <code class="language-text">get()</code>. However, upon clicking it, there is no <code class="language-text">get()</code> method there. So, what kind of dark magic is happening? Let's demystify this!</p>
 <h2>Regular Facades</h2>
+<blockquote>
+<p>Please note that I stripped most of the PHPDocs and inlined the types just for simplicity, "..." refers to more code.</p>
+</blockquote>
+<blockquote>
+<p>I strongly suggest opening your IDE and following along with the code to avoid any confusion.</p>
+</blockquote>
 <p>Following our example, let's explore the <code class="language-text">Route</code> class</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
@@ -26,12 +65,9 @@
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">Route</span> <span class="token keyword">extends</span> <span class="token class-name">Facade</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">/**
-     * Get the registered name of the component.
-     *
-     * @return string
-     */</span>
-    <span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">getFacadeAccessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">// ...</span>
+
+    <span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">getFacadeAccessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">string</span>
     <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token string single-quoted-string">'router'</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -42,22 +78,13 @@
 <span class="token keyword">namespace</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades</span><span class="token punctuation">;</span>
 
 <span class="token keyword">use</span> <span class="token package">RuntimeException</span><span class="token punctuation">;</span>
-<span class="token comment">// more imports</span>
+<span class="token comment">// ...</span>
 
 <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name-definition class-name">Facade</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">// more code</span>
+    <span class="token comment">// ...</span>
 
-    <span class="token comment">/**
-     * Handle dynamic, static calls to the object.
-     *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
-     *
-     * @throws \RuntimeException
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">__callStatic</span><span class="token punctuation">(</span><span class="token variable">$method</span><span class="token punctuation">,</span> <span class="token variable">$args</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">__callStatic</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$method</span><span class="token punctuation">,</span> <span class="token keyword type-hint">array</span> <span class="token variable">$args</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">mixed</span>
     <span class="token punctuation">{</span>
         <span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">getFacadeRoot</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -71,12 +98,16 @@
 </span></code></pre></div>
 <p>Within the parent class, there are lots of methods, there isn't a <code class="language-text">get()</code> method though. But, there is an interesting one, the <a href="https://www.php.net/manual/en/language.oop5.magic.php"><code class="language-text">__callStatic()</code></a> method. It's a <em>magic</em> method, invoked whenever an undefined static method, like <code class="language-text">get()</code> in our case, is called. Therefore, our call <code class="language-text">__callStatic('get', ['/', Closure()])</code> represents what we passed when invoking <code class="language-text">Route::get()</code>, the route <code class="language-text">/</code> and a <code class="language-text">Closure()</code> that returns the welcome view.</p>
 <p>When <code class="language-text">__callStatic()</code> gets triggered, it first attempts to set a variable <code class="language-text">$instance</code> by calling <code class="language-text">getFacadeRoot()</code>, the <code class="language-text">$instance</code> holds the actual class to which the call should be forwarded, let's take a closer look, it will make sense in a bit</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">getFacadeRoot</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// Facade.php</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">getFacadeRoot</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">resolveFacadeInstance</span><span class="token punctuation">(</span><span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">getFacadeAccessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>Hey, look it is the <code class="language-text">getFacadeAccessor()</code> from the child class <code class="language-text">Route</code>, which we know returned the string <code class="language-text">router</code>. This <code class="language-text">router</code> string is then passed to <code class="language-text">resolveFacadeInstance()</code>, which attempts to resolve it to a class, a sort of mapping that says "What class does this string represent?", let's see</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">resolveFacadeInstance</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// Facade.php</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">resolveFacadeInstance</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$resolvedInstance</span><span class="token punctuation">[</span><span class="token variable">$name</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$resolvedInstance</span><span class="token punctuation">[</span><span class="token variable">$name</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -92,12 +123,9 @@
 <span class="token punctuation">}</span></code></pre></div>
 <p>It first checks if a static array, <code class="language-text">$resolvedInstance</code>, has a value set with the given <code class="language-text">$name</code> (which, again, is <code class="language-text">router</code>). If it finds a match, it just returns that value. This is Laravel caching to optimize performance a little bit. This caching occurs within a single request, if this method is called multiple times with the same argument within the same request, it uses the cached value. Let's assume it's the initial call and proceed.</p>
 <p>It then checks if <code class="language-text">$app</code> is set, and <code class="language-text">$app</code> is an instance of the application container</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">/**
- * The application instance being facaded.
- *
- * @var \Illuminate\Contracts\Foundation\Application
- */</span>
-<span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token variable">$app</span><span class="token punctuation">;</span></code></pre></div>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// Facade.php</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token class-name class-name-fully-qualified type-declaration"><span class="token punctuation">\</span>Illuminate<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Foundation<span class="token punctuation">\</span>Application</span> <span class="token variable">$app</span><span class="token punctuation">;</span></code></pre></div>
 <p>If you're curious about what an application container is, think of it as a box where your classes are stored. When you need those classes, you simply reach into that box. Sometimes this container performs a bit of magic, even if the box is empty, and you reach to grab a class, it will get it for you. That's a topic for another article.</p>
 <p>Now, you might wonder, "When is <code class="language-text">$app</code> set?", because it needs to be, otherwise we won't have our <code class="language-text">$instance</code>. This application container gets set during our application's bootstrapping process. Let's take a quick look at the <code class="language-text">\Illuminate\Foundation\Http\Kernel</code> class</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
@@ -108,11 +136,11 @@
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Response</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>Facade</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Kernel</span> <span class="token keyword">as</span> KernelContract<span class="token punctuation">;</span>
-<span class="token comment">// more imports</span>
+<span class="token comment">// ...</span>
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">Kernel</span> <span class="token keyword">implements</span> <span class="token class-name">KernelContract</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">// more code</span>
+    <span class="token comment">// ...</span>
 
     <span class="token keyword">protected</span> <span class="token variable">$app</span><span class="token punctuation">;</span>
 
@@ -144,17 +172,13 @@
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">RegisterFacades</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">/**
-     * Bootstrap the given application.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @return void
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">bootstrap</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Application</span> <span class="token variable">$app</span><span class="token punctuation">)</span>
+    <span class="token comment">// ...</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">bootstrap</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Application</span> <span class="token variable">$app</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
     <span class="token punctuation">{</span>
         <span class="token class-name static-context">Facade</span><span class="token operator">::</span><span class="token function">clearResolvedInstances</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token class-name static-context">Facade</span><span class="token operator">::</span><span class="token function">setFacadeApplication</span><span class="token punctuation">(</span><span class="token variable">$app</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// interested here</span>
+        <span class="token class-name static-context">Facade</span><span class="token operator">::</span><span class="token function">setFacadeApplication</span><span class="token punctuation">(</span><span class="token variable">$app</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Interested here</span>
 
         <span class="token class-name static-context">AliasLoader</span><span class="token operator">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token function">array_merge</span><span class="token punctuation">(</span>
             <span class="token variable">$app</span><span class="token operator">-></span><span class="token function">make</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'config'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'app.aliases'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -163,12 +187,16 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <p>And there it is, we're setting the application container on the <code class="language-text">Facade</code> class using the static method <code class="language-text">setFacadeApplication()</code></p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">setFacadeApplication</span><span class="token punctuation">(</span><span class="token variable">$app</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// RegisterFacades.php</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">setFacadeApplication</span><span class="token punctuation">(</span><span class="token variable">$app</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$app</span> <span class="token operator">=</span> <span class="token variable">$app</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>See, we assign the <code class="language-text">$app</code> property that we're testing within <code class="language-text">resolveFacadeInstance()</code>. This is answers the question, let's continue</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">resolveFacadeInstance</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// Facade.php</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">resolveFacadeInstance</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$resolvedInstance</span><span class="token punctuation">[</span><span class="token variable">$name</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$resolvedInstance</span><span class="token punctuation">[</span><span class="token variable">$name</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -191,7 +219,7 @@
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Container<span class="token punctuation">\</span>Container</span> <span class="token keyword">as</span> ContainerContract<span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">Container</span> <span class="token keyword">implements</span> <span class="token class-name">ArrayAccess</span><span class="token punctuation">,</span> ContainerContract <span class="token punctuation">{</span>
- <span class="token comment">// code here</span>
+    <span class="token comment">// ...</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <p>So the <code class="language-text">resolveFacadeInstance()</code> indeed returns an instance bound to the <code class="language-text">router</code> string, specifically, <code class="language-text">\Illuminate\Routing\Router</code>. How did I know? Take a look at the <code class="language-text">Route</code> facade, often, you will find a PHPDoc <code class="language-text">@see</code> hinting at what this facade conceals or, more precisely, to what class our method calls will be proxied.</p>
 <p>Now, back to our <code class="language-text">__callStatic</code> method</p>
@@ -200,22 +228,13 @@
 <span class="token keyword">namespace</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades</span><span class="token punctuation">;</span>
 
 <span class="token keyword">use</span> <span class="token package">RuntimeException</span><span class="token punctuation">;</span>
-<span class="token comment">// more imports</span>
+<span class="token comment">// ...</span>
 
 <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name-definition class-name">Facade</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">// more code</span>
+    <span class="token comment">// ...</span>
 
-    <span class="token comment">/**
-     * Handle dynamic, static calls to the object.
-     *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
-     *
-     * @throws \RuntimeException
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">__callStatic</span><span class="token punctuation">(</span><span class="token variable">$method</span><span class="token punctuation">,</span> <span class="token variable">$args</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">__callStatic</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$method</span><span class="token punctuation">,</span> <span class="token keyword type-hint">array</span> <span class="token variable">$args</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">mixed</span>
     <span class="token punctuation">{</span>
         <span class="token variable">$instance</span> <span class="token operator">=</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">getFacadeRoot</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -227,33 +246,27 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <p>We have <code class="language-text">$instance</code>, an object of the <code class="language-text">\Illuminate\Routing\Router</code> class. We test if is it set (which, in our case, is confirmed), and we directly invoke the method on it. So, we end up with</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">return</span> <span class="token variable">$instance</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/'</span><span class="token punctuation">,</span> <span class="token function">Closure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// Facade.php</span>
+
+<span class="token keyword">return</span> <span class="token variable">$instance</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/'</span><span class="token punctuation">,</span> <span class="token function">Closure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>And now, you can confirm the <code class="language-text">get()</code> exists within the <code class="language-text">\Illuminate\Routing\Router</code> class</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
 <span class="token keyword">namespace</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Routing</span><span class="token punctuation">;</span>
 
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Routing<span class="token punctuation">\</span>Route</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Routing<span class="token punctuation">\</span>BindingRegistrar</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Routing<span class="token punctuation">\</span>Registrar</span> <span class="token keyword">as</span> RegistrarContract<span class="token punctuation">;</span>
-<span class="token comment">// more imports</span>
+<span class="token comment">// ...</span>
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">Router</span> <span class="token keyword">implements</span> <span class="token class-name">BindingRegistrar</span><span class="token punctuation">,</span> RegistrarContract
 <span class="token punctuation">{</span>
-    <span class="token comment">// more code</span>
+    <span class="token comment">// ...</span>
 
-    <span class="token comment">/**
-     * Register a new GET route with the router.
-     *
-     * @param  string  $uri
-     * @param  array|string|callable|null  $action
-     * @return \Illuminate\Routing\Route
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">get</span><span class="token punctuation">(</span><span class="token variable">$uri</span><span class="token punctuation">,</span> <span class="token variable">$action</span> <span class="token operator">=</span> <span class="token constant">null</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">get</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$uri</span><span class="token punctuation">,</span> <span class="token keyword type-declaration">array</span><span class="token operator">|</span><span class="token keyword type-declaration">string</span><span class="token operator">|</span><span class="token keyword">callable</span><span class="token operator">|</span><span class="token keyword type-declaration">null</span> <span class="token variable">$action</span> <span class="token operator">=</span> <span class="token constant">null</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Route</span>
     <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">addRoute</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'GET'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'HEAD'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$uri</span><span class="token punctuation">,</span> <span class="token variable">$action</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token comment">// more code</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <p>That wraps it up! Wasn't that difficult in the end? To recap, a facade returns a string that's bound to the container. For instance, <code class="language-text">hello-world</code> might be bound to the <code class="language-text">HelloWorld</code> class. When we statically invoke an undefined method on a facade, <code class="language-text">HelloWorldFacade</code> for example, <code class="language-text">__callStatic()</code> steps in. It resolves the string registered in its <code class="language-text">getFacadeAccessor()</code> method to whatever is bound within the container and proxies our call to that retrieved instance. Thus, we end up with <code class="language-text">(new HelloWorld())->method()</code>. That's the essence of it! Still didn't click for you? let's create our facade then!</p>
 <h2>Let's make our Facade</h2>
@@ -279,9 +292,6 @@
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">AppServiceProvider</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceProvider</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">/**
-     * Register any application services.
-     */</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
     <span class="token punctuation">{</span>
         <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">app</span><span class="token operator">-></span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hello-world'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$app</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -289,7 +299,7 @@
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     
-    <span class="token comment">// more code</span>
+    <span class="token comment">// ...</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <p>Now, whenever we request <code class="language-text">hello-world</code> from our application container (or the box, as I mentioned earlier), it returns an instance of <code class="language-text">HelloWorld</code>. What's left? Simply create a facade that returns the string <code class="language-text">hello-world</code>.</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
@@ -321,7 +331,7 @@
 <p>Let's have a look</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
-<span class="token keyword">use</span> <span class="token package">Facades<span class="token punctuation">\</span>App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Controllers</span><span class="token punctuation">;</span> <span class="token comment">// notice the prefix</span>
+<span class="token keyword">use</span> <span class="token package">Facades<span class="token punctuation">\</span>App<span class="token punctuation">\</span>Http<span class="token punctuation">\</span>Controllers</span><span class="token punctuation">;</span> <span class="token comment">// Notice the prefix</span>
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>Route</span><span class="token punctuation">;</span>
 
 <span class="token class-name static-context">Route</span><span class="token operator">::</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -340,13 +350,7 @@
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">RegisterFacades</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">/**
-     * Bootstrap the given application.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @return void
-     */</span>
-    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">bootstrap</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Application</span> <span class="token variable">$app</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">bootstrap</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Application</span> <span class="token variable">$app</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
     <span class="token punctuation">{</span>
         <span class="token class-name static-context">Facade</span><span class="token operator">::</span><span class="token function">clearResolvedInstances</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -355,7 +359,7 @@
         <span class="token class-name static-context">AliasLoader</span><span class="token operator">::</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token function">array_merge</span><span class="token punctuation">(</span>
             <span class="token variable">$app</span><span class="token operator">-></span><span class="token function">make</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'config'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'app.aliases'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
             <span class="token variable">$app</span><span class="token operator">-></span><span class="token function">make</span><span class="token punctuation">(</span><span class="token class-name static-context">PackageManifest</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">aliases</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// interested here</span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Interested here</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <p>You can see at the very end, the <code class="language-text">register()</code> method is invoked. Let's take a peek inside</p>
@@ -365,7 +369,7 @@
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">AliasLoader</span>
 <span class="token punctuation">{</span>
-    <span class="token comment">// more code</span>
+    <span class="token comment">// ...</span>
 
     <span class="token keyword">protected</span> <span class="token variable">$registered</span> <span class="token operator">=</span> <span class="token constant boolean">false</span><span class="token punctuation">;</span>
 
@@ -380,18 +384,17 @@
 <span class="token punctuation">}</span>
 </span></code></pre></div>
 <p>The <code class="language-text">$registered</code> variable is initially set to <code class="language-text">false</code>. Therefore, we enter the <code class="language-text">if</code> statement and call the <code class="language-text">prependToLoaderStack()</code> method. Now, let's explore its implementation</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">/**
- * Prepend the load method to the auto-loader stack.
- *
- * @return void
- */</span>
-<span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function-definition function">prependToLoaderStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// AliasLoader.php</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function-definition function">prependToLoaderStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
 <span class="token punctuation">{</span>
     <span class="token function">spl_autoload_register</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token variable">$this</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'load'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token constant boolean">true</span><span class="token punctuation">,</span> <span class="token constant boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>This is where the magic happens! Laravel is calling the <a href="https://www.php.net/manual/en/function.spl-autoload-register.php"><code class="language-text">spl_autoload_register()</code></a> function, a built-in PHP function that triggers when attempting to access an undefined class. It defines the logic to execute in such situations. In this case, Laravel chooses to invoke the <code class="language-text">load()</code> method when encountering an undefined call. Additionally, <code class="language-text">spl_autoload_register()</code> automatically passes the name of the undefined class to whichever method or function it calls.</p>
 <p>Let's explore the <code class="language-text">load()</code> method, it must be the key</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// AliasLoader.php</span>
+
+<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$facadeNamespace</span> <span class="token operator">&amp;&amp;</span> <span class="token function">str_starts_with</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">,</span> <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$facadeNamespace</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">loadFacade</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -405,19 +408,20 @@
 <span class="token punctuation">}</span></code></pre></div>
 <p>We check if <code class="language-text">$facadeNamespace</code> is set, and if whatever class passed, in our case <code class="language-text">Facades\App\Http\Controllers\HelloWorld</code> starts with whatever set in <code class="language-text">$facadeNamespace</code></p>
 <p>The logic checks if <code class="language-text">$facadeNamespace</code> is set and if the passed class, in our case <code class="language-text">Facades\App\Http\Controllers\HelloWorld</code> (which is undefined), starts with the value specified in <code class="language-text">$facadeNamespace</code></p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">/**
- * The namespace for all real-time facades.
- *
- * @var string
- */</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// AliasLoader.php</span>
+
 <span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token variable">$facadeNamespace</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'Facades\\'</span><span class="token punctuation">;</span></code></pre></div>
 <p>Since we've prefixed our controller's namespace with <code class="language-text">Facades</code>, satisfying the condition, we proceed to <code class="language-text">loadFacade()</code></p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function-definition function">loadFacade</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// AliasLoader.php</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function-definition function">loadFacade</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">require</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">ensureFacadeExists</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>Here, the method requires whatever path is returned from <code class="language-text">ensureFacadeExists()</code>. So, the next step is to delve into its implementation</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function-definition function">ensureFacadeExists</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">// AliasLoader.php</span>
+
+<span class="token keyword">protected</span> <span class="token keyword">function</span> <span class="token function-definition function">ensureFacadeExists</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_file</span><span class="token punctuation">(</span><span class="token variable">$path</span> <span class="token operator">=</span> <span class="token function">storage_path</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'framework/cache/facade-'</span><span class="token operator">.</span><span class="token function">sha1</span><span class="token punctuation">(</span><span class="token variable">$alias</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token string single-quoted-string">'.php'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token variable">$path</span><span class="token punctuation">;</span>
