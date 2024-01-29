@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>https://blog.oussama-mater.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 28 Jan 2024 15:52:19 GMT</lastBuildDate><item><title><![CDATA[Laravel - Eager loading can be bad!]]></title><description><![CDATA[Hello 👋  Yes, you read it right. Eager loading can be bad, really bad. However, we often resort to it when dealing with an N+1 scenario…]]></description><link>https://blog.oussama-mater.tech/laravel-eager-loading-is-bad/</link><guid isPermaLink="false">https://blog.oussama-mater.tech/laravel-eager-loading-is-bad/</guid><pubDate>Sun, 28 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Hello 👋&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>https://blog.oussama-mater.tech</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 29 Jan 2024 16:25:34 GMT</lastBuildDate><item><title><![CDATA[Laravel - Eager loading can be bad!]]></title><description><![CDATA[Hello 👋  Yes, you read it right. Eager loading can be bad, really bad. However, we often resort to it when dealing with an N+1 scenario…]]></description><link>https://blog.oussama-mater.tech/laravel-eager-loading-is-bad/</link><guid isPermaLink="false">https://blog.oussama-mater.tech/laravel-eager-loading-is-bad/</guid><pubDate>Sun, 28 Jan 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Hello 👋&lt;/h2&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
@@ -244,7 +244,127 @@
     &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;withCasts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&apos;last_activity&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token string single-quoted-string&quot;&gt;&apos;datetime&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// casts here&lt;/span&gt;
     &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;By chaining the &lt;code class=&quot;language-text&quot;&gt;withCasts()&lt;/code&gt; method, you can now treat the &lt;code class=&quot;language-text&quot;&gt;last_activity&lt;/code&gt; as if it were a date.&lt;/p&gt;
-&lt;p&gt;That&apos;s it! This is the best it can be.&lt;/p&gt;
+&lt;h2&gt;How about the Laravel way?&lt;/h2&gt;
+&lt;p&gt;The reddit community never disappoints! They have pointed out another alternative solution, a &lt;em&gt;Laravel-ish&lt;/em&gt; approach; &lt;a href=&quot;https://laravel.com/docs/10.x/eloquent-relationships#has-one-of-many&quot;&gt;One Of Many&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Let&apos;s define a new relationship to always retrieve the latest log&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// In the Server Model&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function-definition function&quot;&gt;latestLog&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token class-name return-type&quot;&gt;HasOne&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasOne&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name static-context&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;latestOfMany&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we can use the relationship like this&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// In the Controller (or action..)&lt;/span&gt;
+&lt;span class=&quot;token variable&quot;&gt;$servers&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name static-context&quot;&gt;Server&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string single-quoted-string&quot;&gt;&apos;latestLog&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will result in the following queries&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;servers&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt;
+    &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;inner&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;id_aggregate&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;server_id&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt;
+            &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;server_id&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;by&lt;/span&gt;
+            &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;server_id&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;latestOfMany&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt; 
+    &lt;span class=&quot;token keyword&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;latestOfMany&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;id_aggregate&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;latestOfMany&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;server_id&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;logs&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token identifier&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;server_id&lt;span class=&quot;token punctuation&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And it can be used in the Blade like this&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;php&quot;&gt;&lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// In the Blade view&lt;/span&gt;
+@&lt;span class=&quot;token keyword&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$servers&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$server&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$server&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;latestLog&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+@&lt;span class=&quot;token keyword&quot;&gt;endforeach&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For a comparison between the two methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using subqueries
+&lt;ul&gt;
+&lt;li&gt;1 query.&lt;/li&gt;
+&lt;li&gt;A total of 10 models loaded.&lt;/li&gt;
+&lt;li&gt;Memory usage: 2MB.&lt;/li&gt;
+&lt;li&gt;Execution time: 21.55 ms.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0d1278535d852302088dce571cc2d660/cc155/old.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 10.126582278481013%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAgElEQVR42jWJSw6CMAAFOU4pUZJ+CT8xUAouIDEuda3n8RzecQwkLCYv8ybxp5KmvmH8wL2MWN3xqCZ+zzff14cxr6nqGWOuZFmxr3MD3gec61HqgrM9Wnfk54pEtQu6XVHNgvQTqR3JihlhAkIHhI2kJiC338W9b34gD7cj0kb+1VVEFtSRWIUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;old&quot;
+        title=&quot;old&quot;
+        src=&quot;/static/0d1278535d852302088dce571cc2d660/f058b/old.png&quot;
+        srcset=&quot;/static/0d1278535d852302088dce571cc2d660/c26ae/old.png 158w,
+/static/0d1278535d852302088dce571cc2d660/6bdcf/old.png 315w,
+/static/0d1278535d852302088dce571cc2d660/f058b/old.png 630w,
+/static/0d1278535d852302088dce571cc2d660/cc155/old.png 886w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using the &lt;code class=&quot;language-text&quot;&gt;latestOfMany()&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;2 queries&lt;/li&gt;
+&lt;li&gt;A total of 20 models loaded.&lt;/li&gt;
+&lt;li&gt;Memory usage: 2MB.&lt;/li&gt;
+&lt;li&gt;Execution time: 20.63 ms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c0521e837e9c02eaf7c7b1281d6ac376/a0b80/new.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 15.18987341772152%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAp0lEQVR42l2LSQ6CQAAEeQkKmiiDoIDMAoIKKiYu8ewPvBo/5gvLgHjxUOnuStpKw5xVeUKmNdfsiFZ7nvWN9+PFvTxRmAZlGoJwxdRTLKISqXaYrEHrA6msSZYVSu+ZLwqspDwj1xdCfWDgZwyFYRxtsCcSWxgGwuAIgzvLGQU5rp91e9h7x2/5/kZBgSWSmi8VXrzFi7aIuO1V139MOzZ9/vvexRUfVEJh/oXeSgQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;new&quot;
+        title=&quot;new&quot;
+        src=&quot;/static/c0521e837e9c02eaf7c7b1281d6ac376/f058b/new.png&quot;
+        srcset=&quot;/static/c0521e837e9c02eaf7c7b1281d6ac376/c26ae/new.png 158w,
+/static/c0521e837e9c02eaf7c7b1281d6ac376/6bdcf/new.png 315w,
+/static/c0521e837e9c02eaf7c7b1281d6ac376/f058b/new.png 630w,
+/static/c0521e837e9c02eaf7c7b1281d6ac376/40601/new.png 945w,
+/static/c0521e837e9c02eaf7c7b1281d6ac376/a0b80/new.png 955w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Both methods are really good; which one to use will depend on your case. If you absolutely need the child model hydrated and will make use of &lt;em&gt;all its fields&lt;/em&gt;, go with the &lt;code class=&quot;language-text&quot;&gt;latestOfMany()&lt;/code&gt;. However, if you only need a few fields, then the subquery will perform better. This is because, in the subquery, you select exactly what you need. Regardless of the number of records you have, the memory usage will be almost the same. Now, for the second method, memory usage is heavily dependent on the number of columns your table has. In reality, a table can easily have 50 columns, so hydrating the model will be expensive, even if it is only one per parent, that is to keep in mind when choosing!&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;I have seen some developers, by design, choose to force eager loading for all the models. You can&apos;t just use it for everything, as much as it seems like you&apos;ve solved the issue, you might have actually created a worse one. Not everything is a nail; the hammer might not work 🔨&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Laravel Under The Hood - Facades]]></title><description><![CDATA[Hello  👋  You've just installed a fresh Laravel application, booted it up, and got the welcome page. Like everyone else, you try to see how…]]></description><link>https://blog.oussama-mater.tech/laravel-core-facades/</link><guid isPermaLink="false">https://blog.oussama-mater.tech/laravel-core-facades/</guid><pubDate>Mon, 18 Dec 2023 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Hello &lt;code class=&quot;language-text&quot;&gt;Facades&lt;/code&gt; 👋&lt;/h2&gt;
 &lt;p&gt;&lt;span
