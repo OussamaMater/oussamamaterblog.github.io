@@ -43,7 +43,7 @@
   </a>
     </span></p>
 <p>As you get more serious about programming, you inevitably encounter the phrase "Code to an interface", either in videos, books, or articles. And it never made sense to me. I questioned the need to create an interface and then implement it. How do I determine when and where to use these interfaces? Whenever I watched a tutorial or read an article, they would explain what an interface is, "it is a class without implementation", and I am like "Ehmm, thanks 😏". I mean, I already knew that; what I really wanted to know was why and when to use it.</p>
-<p>I remember one day asking in the Discord community, and one of the seniors simply said, "Don't worry; it will eventually click for you", and it did, it took some time, but it did. If you're experiencing this, know that we've all been there, let's help you understand why you need to <strong>Code to an interface</strong>.</p>
+<p>I remember one day asking on the Discord community, and one of the seniors simply said, "Don't worry; it will eventually click for you", and it did, it took some time, but it did. If you're experiencing this, know that we've all been there, let's help you understand why you need to <strong>Code to an interface</strong>.</p>
 <h2>Let's write some code</h2>
 <p>Since AI is taking over, and everyone is losing their shit about it, we don't want to be late to the party. We want to add it to our website, a small chatbot that answers questions about our product will do it.</p>
 <blockquote>
@@ -148,7 +148,7 @@
 <h3>Open-Closed Principle</h3>
 <p>The first principle we respected is the Open-Closed Principle, which states that the code should be open for extension and closed for modification. As challenging as it may sound, you've achieved it. Think about it, the <code class="language-text">ChatBot</code> is closed for modification now; we won't touch the code agin. This was our goal from the beginning. But, it is open for extension; if we were to add a 3rd, 4th, or even a 5th provider, nothing is stopping us. We can implement the interface, and our class can use it out of the box, no changes are required.</p>
 <h3>Liskov Substitution</h3>
-<p>I won't bore you with its definition, but basically, it states that you can substitute classes with ALL their subclasses and vice versa. Technically, all of our AI providers "are-a" <code class="language-text">AIProvider</code>, their implementations can be swapped for one another, without affecting the correctness of <code class="language-text">ChatBot</code>, the latter does not even which provider it is using 😂, so yes, we respected mr Liskov.</p>
+<p>I won't bore you with its definition, but basically, it states that you can substitute classes with ALL their subclasses and vice versa. Technically, all of our AI providers <code class="language-text">are-a</code> <code class="language-text">AIProvider</code>, their implementations can be swapped for one another, without affecting the correctness of <code class="language-text">ChatBot</code>, the latter does not even which provider it is using 😂, so yes, we respected Mr Liskov.</p>
 <h3>Dependency Inversion</h3>
 <p>I must admit, this one could have its own article. But to put it simply, the principle states that you should depend on abstractions rather than concretes, which is exactly what we are doing. We are dependent on a provider, not a specific one like Open AI.</p>
 <p>Remember, all of this, because we coded to an interface.</p>
