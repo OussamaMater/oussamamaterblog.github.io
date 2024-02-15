@@ -11,7 +11,7 @@
       </script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><header class="global-header"><a class="header-link-home" href="/">cd ..</a></header><main><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">Laravel Real-Time Notifications with SSE</h1><p>April 05, 2023</p></header><section itemProp="articleBody"><h2>Say Hi to Server-Sent Events</h2>
 <p>If you've ever needed to implement a real-time feature in your web application, you're likely familiar with the complexity of using WebSockets or the resource-intensive nature of long-polling.</p>
 <p>Recently, I found myself in a situation where neither of them was an option, that's when I discovered <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">Server-Sent Events</a> (SSE), not only it was super easy to set up, but it also allowed me to achieve real-time communication in a fraction of the time it would have taken with WebSockets, and in this article, we will create a real-time notification using this technology.</p>
-<h2>How does SSE works?</h2>
+<h2>How does SSE work?</h2>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 620px; "
@@ -43,10 +43,10 @@
   </a>
     </span></p>
 <p>SSE allows a server to send real-time updates to a web page without the need for the client to constantly poll for new information.</p>
-<p>The flow is simple, the client establishes a connection with the server, and the server send updates to the client over that connection as they occur, these updates are sent as "events," which consist of a message and an optional event name.</p>
+<p>The flow is simple, the client establishes a connection with the server, and the server sends updates to the client over that connection as they occur, these updates are sent as "events," which consist of a message and an optional event name.</p>
 <p>The client then can react to these events accordingly, by displaying a notification or updating the page.</p>
 <blockquote>
-<p>SSE is a good alternative to WebSockets only if your use case require one-way communication, from Server to Client.</p>
+<p>SSE is a good alternative to WebSockets only if your use case requires one-way communication, from Server to Client.</p>
 </blockquote>
 <h2>Let's use it in a Laravel project</h2>
 <p>Here is a preview of what we are going to build today</p>
@@ -55,9 +55,9 @@
 <p>I will be using <a href="https://github.com/qruto/laravel-wave">Laravel-Wave</a> package to implement SSE.</p>
 <p>Let's start by creating a new Laravel application</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">composer create-project laravel/laravel laravel-sse</code></pre></div>
-<p>For the server side setup we just need to pull the package</p>
+<p>For the server-side setup, we just need to pull the package</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">composer require qruto/laravel-wave</code></pre></div>
-<p>For the client side setup we need to install <code class="language-text">Laravel Echo</code> and the adapter that comes with the package</p>
+<p>For the client-side setup, we need to install <code class="language-text">Laravel Echo</code> and the adapter that comes with the package</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install --save-dev laravel-echo laravel-wave</code></pre></div>
 <p>I will also install <code class="language-text">sweetalert2</code> for this demo</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install --save-dev sweetalert2</code></pre></div>
@@ -67,7 +67,7 @@
 </blockquote>
 <p>Let's create a new Laravel event</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php">php artisan make<span class="token punctuation">:</span>event RealTimeNotification</code></pre></div>
-<p>We need to make few changes to this event</p>
+<p>We need to make a few changes to this event</p>
 <ul>
 <li>Make sure it implements the <code class="language-text">ShouldBroadcast</code> interface.</li>
 <li>Make sure it returns <code class="language-text">Channel</code> instead of <code class="language-text">PrivateChannel</code>.</li>
@@ -128,7 +128,7 @@ window<span class="token punctuation">.</span>Echo<span class="token punctuation
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm run dev</code></pre></div>
 <p>Believe it or not, that's all you need to do to receive real-time notifications!</p>
 <h3>Test the notifications</h3>
-<p>First let's add a route in our <code class="language-text">web.php</code></p>
+<p>First, let's add a route in our <code class="language-text">web.php</code></p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token class-name static-context">Route</span><span class="token operator">::</span><span class="token function">view</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'real-time-notifications'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'sse'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>In your <code class="language-text">resources/views/see.blade.php</code> add the following code</p>
 <div class="gatsby-highlight" data-language="html"><pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
@@ -147,7 +147,7 @@ window<span class="token punctuation">.</span>Echo<span class="token punctuation
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre></div>
-<p>Now all what's left to do is to dispatch the <code class="language-text">RealTimeNotification</code> event</p>
+<p>Now all that's left to do is to dispatch the <code class="language-text">RealTimeNotification</code> event</p>
 <p>Start <code class="language-text">tinker</code></p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php">php artisan tinker</code></pre></div>
 <p>Dispatch the event</p>
@@ -161,4 +161,4 @@ window<span class="token punctuation">.</span>Echo<span class="token punctuation
           >
             window.___chunkMapping="{\"app\":[\"/app-afa36f3a075011d7755b.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-0ebd60b2fb9cb9fe1f10.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-220139f960209804aa87.js\"],\"component---src-pages-using-typescript-tsx\":[\"/component---src-pages-using-typescript-tsx-877c28b53f4b0ba7558f.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-25ba21b77f32b7ec14ea.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="5ff27721653f1cd99b14";</script><script src="/webpack-runtime-97b3f84afbfcea1e3aea.js" async></script><script src="/framework-379b7ea7c44f25b32429.js" async></script><script src="/app-afa36f3a075011d7755b.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="0809a375cd31f1d42310";</script><script src="/webpack-runtime-02513abdc78eb7bcd287.js" async></script><script src="/framework-379b7ea7c44f25b32429.js" async></script><script src="/app-afa36f3a075011d7755b.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
