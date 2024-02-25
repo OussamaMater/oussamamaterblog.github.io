@@ -27,7 +27,7 @@ php securinets app:install view</code></pre></div>
 <p>We can start using our console app by running:</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">php securinets <span class="token punctuation">[</span>command<span class="token punctuation">]</span></code></pre></div>
 <p>For our case, we need to build a TCP server, actively listening for incoming connections. We have a few options for that, like RoadRunner or Swoole, and I am choosing the latter.</p>
-<p>Swoole is a PHP extension that enables you to do A LOT of things, such as asynchronous programming, event loops, coroutines, and much more.</p>
+<p><a href="https://openswoole.com/docs">Swoole</a> is a PHP extension that enables you to do A LOT of things, such as asynchronous programming, event loops, coroutines, and much more.</p>
 <p>For Linux, the installation is straightforward:</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> php8.2-openswoole</code></pre></div>
 <blockquote>
@@ -42,7 +42,7 @@ php securinets app:install view</code></pre></div>
 <p>Now, we can use Laravel Zero to generate a new command to start the server:</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">php securinets make:command ServeCommand</code></pre></div>
 <p>In the <code class="language-text">ServeCommand</code>, we can make use of Swoole. It provides a <code class="language-text">Server</code> class that expects a host and a port. The good news is you can still define environment variables and reference them in the config, just like you would in your Laravel application. All of this is handled by Laravel Zero because, as you may recall, we installed those components using the <code class="language-text">app:install</code> command, which you would otherwise have to do manually.</p>
-<p>I appreciate how organized Laravel logs are we run the <code class="language-text">serve</code> command, so maybe we create something similar? I'm know for a fact that Laravel constructs the logs by combining <code class="language-text">echo</code> statements with <code class="language-text">str_repeat</code>, everything is done in the command itself. However, I find this approach a bit noisy. So, let's leverage the Blade engine for a cleaner solution.</p>
+<p>I appreciate how organized the Laravel <code class="language-text">serve</code> command logs are, so maybe we create something similar? I know for a fact that Laravel constructs the logs by combining <code class="language-text">echo</code> statements with <code class="language-text">str_repeat</code>, everything is done in the command itself. However, I find this approach a bit noisy. So, let's leverage the Blade engine for a cleaner solution.</p>
 <p>In your <code class="language-text">resources/views</code>, create a <code class="language-text">log.blade.php</code> view</p>
 <div class="gatsby-highlight" data-language="html"><pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mr-1 ml-2 text-gray-600<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>{{ $date }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
@@ -179,7 +179,7 @@ php securinets app:install view</code></pre></div>
 <blockquote>
 <p>You can find all the methods on the server object <a href="https://openswoole.com/docs/modules/swoole-http-server-doc#methods">here</a>.</p>
 </blockquote>
-<p>One thing I want to bring to your attention is on the receive event. We are echoing back whatever the client sent. To print the output as you would expect it, you need to get the formatter used by the console commands under the hood and send its result, which is an ANSI sequence. This way, it can be rendered correctly on the client's terminal.</p>
+<p>One thing I want to bring to your attention is on the receive event. In this example, we are echoing back whatever the client sent. Feel free to implement the logic there; for instance, in my case, I would validate the submitted flag against certain criteria. Additionally, please note that to print the output as you would expect it, you need to get the formatter used by the console commands under the hood and send its result, which is an ANSI sequence. This way, it can be rendered correctly on the client's terminal.</p>
 <p>Now, we can run our server by executing the following command</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">php securinets serve</code></pre></div>
 <p>And you will be prompted with</p>
@@ -217,9 +217,10 @@ php securinets app:install view</code></pre></div>
 <blockquote>
 <p>Am I the only one getting excited for this, I mean how cool is that?</p>
 </blockquote>
-<p>Now that we have our console application, we want to ensure that this command is always running. For one reason or another, it can crash and stop. When that happens, we want to be able to restart it immediately. That's why I will be using Supervisor to do so.</p>
+<h2>What else?</h2>
+<p>Now that we have our console application, we want to ensure that this command is always running. For one reason or another, it can crash and stop. When that happens, we want to be able to restart it immediately. That's why I will be using <a href="http://supervisord.org/">Supervisor</a> to do so.</p>
 <p>For Linux users, you can run the following commands:</p>
-<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> supervisor</code></pre></div>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> supervisor</code></pre></div>
 <p>Now, create a config file:</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">nano</span> /etc/supervisor/conf.d/securinets.conf</code></pre></div>
 <p>Paste the following config:</p>
@@ -235,6 +236,9 @@ php securinets app:install view</code></pre></div>
 <span class="token key attr-name">redirect_stderr</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
 <span class="token key attr-name">stdout_logfile</span><span class="token punctuation">=</span><span class="token value attr-value">/var/log/securinets.log</span>
 <span class="token key attr-name">stopwaitsecs</span><span class="token punctuation">=</span><span class="token value attr-value">3600</span></code></pre></div>
+<blockquote>
+<p>Read more about the configuration <a href="http://supervisord.org/configuration.html">here</a>.</p>
+</blockquote>
 <p>Start Supervisor by running:</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> supervisorctl reread
 <span class="token function">sudo</span> supervisorctl update
