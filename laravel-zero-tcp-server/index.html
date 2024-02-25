@@ -70,8 +70,8 @@ php securinets app:install view</code></pre></div>
         {{ $message }}
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre></div>
-<p>Now that our views are ready, we can use Swoole. But before that, let's go over the basics.</p>
-<p>To create a server, you need to instantiate the <code class="language-text">OpenSwoole\Server</code> class. By doing that, you can hook into various events. We will be using <code class="language-text">Start</code>, <code class="language-text">Connect</code>, <code class="language-text">Receive</code>, and <code class="language-text">Close</code>. You can find all the events <a href="https://openswoole.com/docs/modules/swoole-server-doc#events">here</a>.</p>
+<p>Now that our views are ready, you might be wondering, "Isn't this Tailwind CSS?" Well, yes, it is! Laravel Zero ships with <a href="https://github.com/nunomaduro/termwind">Termwind</a>, another great package that enables you to use Tailwind CSS classes for console applications.</p>
+<p>Now, we can use Swoole. But before that, let's go over the basics. To create a server, you need to instantiate the <code class="language-text">OpenSwoole\Server</code> class. By doing that, you can hook into various events. We will be using <code class="language-text">Start</code>, <code class="language-text">Connect</code>, <code class="language-text">Receive</code>, and <code class="language-text">Close</code>. You can find all the events <a href="https://openswoole.com/docs/modules/swoole-server-doc#events">here</a>.</p>
 <blockquote>
 <p>Under the hood, Swoole runs an event loop. Event loops are what made Nginx revolutionary and are the solution to the C10k problem. Curious? We will be traveling back to 2004 soon to discuss those 👀</p>
 </blockquote>
