@@ -73,7 +73,7 @@ php securinets app:install view</code></pre></div>
 <p>Now that our views are ready, we can use Swoole. But before that, let's go over the basics.</p>
 <p>To create a server, you need to instantiate the <code class="language-text">OpenSwoole\Server</code> class. By doing that, you can hook into various events. We will be using <code class="language-text">Start</code>, <code class="language-text">Connect</code>, <code class="language-text">Receive</code>, and <code class="language-text">Close</code>. You can find all the events <a href="https://openswoole.com/docs/modules/swoole-server-doc#events">here</a>.</p>
 <blockquote>
-<p>Under the hood, Swoole will runs an event loop. Event loops are what made Nginx revolutionary and are the solution to the C10k problem. Curious? We will be traveling back to 2004 soon to discuss those 👀</p>
+<p>Under the hood, Swoole runs an event loop. Event loops are what made Nginx revolutionary and are the solution to the C10k problem. Curious? We will be traveling back to 2004 soon to discuss those 👀</p>
 </blockquote>
 <p>Now, with what we learned, the command will look like (code is commented)</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
