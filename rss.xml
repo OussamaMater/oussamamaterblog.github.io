@@ -1,9 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>https://blog.oussama-mater.tech</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 25 Feb 2024 21:39:03 GMT</lastBuildDate><item><title><![CDATA[Laravel Zero - Let's build a TCP server]]></title><description><![CDATA[Hello 👋 A few weeks ago, I began working on a TCP server for an upcoming annual CTF hosted by my team "Securinets ISI". The goal is to…]]></description><link>https://blog.oussama-mater.tech/laravel-zero-tcp-server/</link><guid isPermaLink="false">https://blog.oussama-mater.tech/laravel-zero-tcp-server/</guid><pubDate>Sun, 25 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Hello 👋&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Gatsby Starter Blog RSS Feed]]></title><description><![CDATA[Gatsby Starter Blog RSS Feed]]></description><link>https://blog.oussama-mater.tech</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 26 Feb 2024 07:41:03 GMT</lastBuildDate><item><title><![CDATA[Laravel Zero - Let's build a TCP server]]></title><description><![CDATA[Hello 👋  A few weeks ago, I began working on a TCP server for an upcoming annual CTF hosted by my team "Securinets ISI". The goal is to…]]></description><link>https://blog.oussama-mater.tech/laravel-zero-tcp-server/</link><guid isPermaLink="false">https://blog.oussama-mater.tech/laravel-zero-tcp-server/</guid><pubDate>Sun, 25 Feb 2024 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Hello 👋&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5fc1459f3b756f4fe3f94cbd63269f6e/0f882/cover.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 25.316455696202528%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABWklEQVR42h3O0W7SUACA4d7pRlhboGc9beFQdiillDYM0DnAWJnBmGVkW9ySugUvjJt6o9mFWbLd7N7H8Dl/E78n+Ixs/Ui6/E52dEOYf0JlG/R4gxt9RKVn2K7GdHJk+BrLiXlecajabUSrwNMFQmZUrIAt2+OZWcfIz36j0lOC7jGt5Jxw/AU92eANrvD1e8xahC2GSDWnIYds7+xiCY0Ml7hqgS0ztuwmlXqHakNjxPNjfD3Hax/idRb4vTcMX52QzC7Jpx+I0xmhHhMlC6J0Ri/ZJ+5P6WcFws8Q7gDLUdR22+yYAcb49CfhqKQ1uKI1+kx3dUf09pa4fCLonuD4E4Q6+j8S7j6i2Sc+KBFqhey8w1MHBH7Ethmw+nqHMTl/YG96Qzj6QfvlL4blH5L1Iy/u/yJ7JTVV0OhcIPfWNMIllsppHn5D6mv87pp6ck01LhBeTu/2iX8+CJqU/UqZIgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;cover&quot;
+        title=&quot;cover&quot;
+        src=&quot;/static/5fc1459f3b756f4fe3f94cbd63269f6e/f058b/cover.png&quot;
+        srcset=&quot;/static/5fc1459f3b756f4fe3f94cbd63269f6e/c26ae/cover.png 158w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/6bdcf/cover.png 315w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/f058b/cover.png 630w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/40601/cover.png 945w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/78612/cover.png 1260w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/0f882/cover.png 1584w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;A few weeks ago, I began working on a TCP server for an upcoming annual CTF hosted by my team &quot;Securinets ISI&quot;. The goal is to enable players to quickly submit flags using a command like:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;flag&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;nc&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1 &lt;span class=&quot;token number&quot;&gt;8000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;For this task, I needed to develop a console application. Instead of pulling packages independently, like the DB and Views component from Laravel, the console component from Symfony, and Phinx for DB migrations, I found Laravel Zero to be the perfect fit. We&apos;ll be using it to build the server!&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Laravel Zero is a lightweight and modular micro-framework for developing fast and powerful console applications. Built on top of the Laravel components.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;A little about servers&lt;/h2&gt;
+&lt;p&gt;If you&apos;re not familiar with what a TCP server is, no worries, you&apos;ve been using one your whole life. Web servers are TCP servers, just with a layer of abstraction. This one operates on a slightly lower level. A server will listen on a &quot;server socket&quot;, and a &lt;a href=&quot;https://www.keil.com/pack/doc/mw6/Network/html/using_network_sockets_tcp.html&quot;&gt;socket&lt;/a&gt; is nothing but an IP bound to a PORT, represented as IP:PORT. This socket waits for clients to make requests. Therefore, every communication involves two sockets; one for the server and one for the client.&lt;/p&gt;
+&lt;p&gt;The client receives a random port assigned by the OS on-the-fly when connecting to the server. Yes, a single server socket can handle multiple clients, though not concurrently. Each time a client connects, it is pushed to an &lt;a href=&quot;https://www.alibabacloud.com/blog/tcp-syn-queue-and-accept-queue-overflow-explained_599203&quot;&gt;accept queue&lt;/a&gt;, waiting for its turn.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Knowing how servers work is genuinely interesting. I&apos;ve provided a few links for you to read; have fun exploring. And yes, I&apos;ll be writing about those soon.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;Building the server&lt;/h2&gt;
 &lt;p&gt;Without further ado, let&apos;s begin by installing Laravel Zero:&lt;/p&gt;

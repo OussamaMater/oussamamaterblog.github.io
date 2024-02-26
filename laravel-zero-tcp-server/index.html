@@ -9,11 +9,50 @@
         gtag('config', 'G-2LRDH83LP2', {"send_page_view":false});
       }
       </script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><header class="global-header"><a class="header-link-home" href="/">cd ..</a></header><main><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">Laravel Zero - Let&#x27;s build a TCP server</h1><p>February 25, 2024</p></header><section itemProp="articleBody"><h2>Hello 👋</h2>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5fc1459f3b756f4fe3f94cbd63269f6e/0f882/cover.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 25.316455696202528%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABWklEQVR42h3O0W7SUACA4d7pRlhboGc9beFQdiillDYM0DnAWJnBmGVkW9ySugUvjJt6o9mFWbLd7N7H8Dl/E78n+Ixs/Ui6/E52dEOYf0JlG/R4gxt9RKVn2K7GdHJk+BrLiXlecajabUSrwNMFQmZUrIAt2+OZWcfIz36j0lOC7jGt5Jxw/AU92eANrvD1e8xahC2GSDWnIYds7+xiCY0Ml7hqgS0ztuwmlXqHakNjxPNjfD3Hax/idRb4vTcMX52QzC7Jpx+I0xmhHhMlC6J0Ri/ZJ+5P6WcFws8Q7gDLUdR22+yYAcb49CfhqKQ1uKI1+kx3dUf09pa4fCLonuD4E4Q6+j8S7j6i2Sc+KBFqhey8w1MHBH7Ethmw+nqHMTl/YG96Qzj6QfvlL4blH5L1Iy/u/yJ7JTVV0OhcIPfWNMIllsppHn5D6mv87pp6ck01LhBeTu/2iX8+CJqU/UqZIgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="cover"
+        title="cover"
+        src="/static/5fc1459f3b756f4fe3f94cbd63269f6e/f058b/cover.png"
+        srcset="/static/5fc1459f3b756f4fe3f94cbd63269f6e/c26ae/cover.png 158w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/6bdcf/cover.png 315w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/f058b/cover.png 630w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/40601/cover.png 945w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/78612/cover.png 1260w,
+/static/5fc1459f3b756f4fe3f94cbd63269f6e/0f882/cover.png 1584w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
 <p>A few weeks ago, I began working on a TCP server for an upcoming annual CTF hosted by my team "Securinets ISI". The goal is to enable players to quickly submit flags using a command like:</p>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"flag"</span> <span class="token operator">|</span> <span class="token function">nc</span> <span class="token number">127.0</span>.0.1 <span class="token number">8000</span></code></pre></div>
 <p>For this task, I needed to develop a console application. Instead of pulling packages independently, like the DB and Views component from Laravel, the console component from Symfony, and Phinx for DB migrations, I found Laravel Zero to be the perfect fit. We'll be using it to build the server!</p>
 <blockquote>
 <p>Laravel Zero is a lightweight and modular micro-framework for developing fast and powerful console applications. Built on top of the Laravel components.</p>
+</blockquote>
+<h2>A little about servers</h2>
+<p>If you're not familiar with what a TCP server is, no worries, you've been using one your whole life. Web servers are TCP servers, just with a layer of abstraction. This one operates on a slightly lower level. A server will listen on a "server socket", and a <a href="https://www.keil.com/pack/doc/mw6/Network/html/using_network_sockets_tcp.html">socket</a> is nothing but an IP bound to a PORT, represented as IP:PORT. This socket waits for clients to make requests. Therefore, every communication involves two sockets; one for the server and one for the client.</p>
+<p>The client receives a random port assigned by the OS on-the-fly when connecting to the server. Yes, a single server socket can handle multiple clients, though not concurrently. Each time a client connects, it is pushed to an <a href="https://www.alibabacloud.com/blog/tcp-syn-queue-and-accept-queue-overflow-explained_599203">accept queue</a>, waiting for its turn.</p>
+<blockquote>
+<p>Knowing how servers work is genuinely interesting. I've provided a few links for you to read; have fun exploring. And yes, I'll be writing about those soon.</p>
 </blockquote>
 <h2>Building the server</h2>
 <p>Without further ado, let's begin by installing Laravel Zero:</p>
