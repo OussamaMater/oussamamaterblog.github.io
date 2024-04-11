@@ -149,8 +149,8 @@
 <p>So, to fix this, we need to follow some steps:</p>
 <ol>
 <li>Convert the static <code class="language-text">getRatesFromApi()</code> into a regular one;</li>
-<li>Create a new interface that defines which methods should be implemented by <code class="language-text">ECBExchangeRateService</code>;</li>
-<li>Bind the newly defined interface to our service class in the Laravel service provider;</li>
+<li>Create a new interface that defines which methods should be implemented by <code class="language-text">ECBExchangeRateService</code> (optional);</li>
+<li>Bind the newly defined interface to our service class in the Laravel service provider (optional);</li>
 <li>Make use of dependency injection, whether via a constructor or directly into the method, depending on how you want your API to look.</li>
 </ol>
 <p>One might argue that this is the correct way to do things, but I'm a very simple guy. I feel that this is an overkill, especially if I know that I won't be changing any implementations for a very long time.</p>
@@ -253,7 +253,6 @@
 
 <span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Bus<span class="token punctuation">\</span>DispatcherFake</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>Facades<span class="token punctuation">\</span>Facade</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Dispatcher</span> <span class="token keyword">as</span> DispatcherContract<span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">Dispatcher</span> <span class="token keyword">extends</span> <span class="token class-name">Facade</span>
 <span class="token punctuation">{</span>
@@ -269,7 +268,7 @@
 
     <span class="token keyword">protected</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">getFacadeAccessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token class-name static-context">DispatcherContract</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token string single-quoted-string">'dispatcher'</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <blockquote>
@@ -282,13 +281,12 @@
 
 <span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Bus<span class="token punctuation">\</span>Dispatcher</span><span class="token punctuation">;</span>
 <span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Support<span class="token punctuation">\</span>ServiceProvider</span><span class="token punctuation">;</span>
-<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Dispatcher</span> <span class="token keyword">as</span> DispatcherContract<span class="token punctuation">;</span>
 
 <span class="token keyword">class</span> <span class="token class-name-definition class-name">AppServiceProvider</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceProvider</span>
 <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">register</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
     <span class="token punctuation">{</span>
-        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">app</span><span class="token operator">-></span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token class-name static-context">DispatcherContract</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$app</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">app</span><span class="token operator">-></span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'dispatcher'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$app</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Dispatcher</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
