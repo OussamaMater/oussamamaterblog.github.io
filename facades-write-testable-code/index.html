@@ -70,7 +70,7 @@
     >
       <a
     class="gatsby-resp-image-link"
-    href="/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/0f882/cover.png"
+    href="/static/15441dce00f34d83577a0416bda8202d/0f882/cover-facades.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -81,15 +81,15 @@
   ></span>
   <img
         class="gatsby-resp-image-image"
-        alt="cover"
-        title="cover"
-        src="/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/f058b/cover.png"
-        srcset="/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/c26ae/cover.png 158w,
-/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/6bdcf/cover.png 315w,
-/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/f058b/cover.png 630w,
-/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/40601/cover.png 945w,
-/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/78612/cover.png 1260w,
-/static/c6ea60e18b0bbf08e3f5aa0a5e62d4ef/0f882/cover.png 1584w"
+        alt="cover facades"
+        title="cover facades"
+        src="/static/15441dce00f34d83577a0416bda8202d/f058b/cover-facades.png"
+        srcset="/static/15441dce00f34d83577a0416bda8202d/c26ae/cover-facades.png 158w,
+/static/15441dce00f34d83577a0416bda8202d/6bdcf/cover-facades.png 315w,
+/static/15441dce00f34d83577a0416bda8202d/f058b/cover-facades.png 630w,
+/static/15441dce00f34d83577a0416bda8202d/40601/cover-facades.png 945w,
+/static/15441dce00f34d83577a0416bda8202d/78612/cover-facades.png 1260w,
+/static/15441dce00f34d83577a0416bda8202d/0f882/cover-facades.png 1584w"
         sizes="(max-width: 630px) 100vw, 630px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
@@ -98,12 +98,12 @@
   </a>
     </span></p>
 <p>For one reason or another, <a href="https://blog.oussama-mater.tech/laravel-core-facades/">Laravel Facades</a> don't get much love. I often read about how they are not a true facade implementation, and let me tell you, they're not 🤷. They're more like proxies than facades. If you think about it, they simply forward calls to their respective classes, effectively intercepting the request. When you start looking at them this way, you realize that facades, when used correctly, can result in a clean and testable code. So, don't get too caught up in the naming, I mean who cares what they are called? And let's see how we can make use of them.</p>
-<h2 id="same-same-but-different-but-still-same" style="position:relative;"><a href="#same-same-but-different-but-still-same" aria-label="same same but different but still same permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+<h2 id="same-same-but-different-but-still-same-" style="position:relative;"><a href="#same-same-but-different-but-still-same-" aria-label="same same but different but still same  permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
               viewBox="0 0 490 490" xml:space="preserve">
            <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
              v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
              h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
-           </svg></a>Same-Same, But Different.. But Still Same</h2>
+           </svg></a>Same-Same, But Different... But Still Same 😎</h2>
 <p>When writing service classes, I'm not a fan of using static methods, they make testing dependent classes <strong>HARD</strong>. However, I do love the clean calls of they offer, like <code class="language-text">Service::action()</code>. With Laravel <a href="https://blog.oussama-mater.tech/laravel-core-facades/#laravel-real-time-facades">real-time facades</a>, we can achieve this.</p>
 <p>Let's take a look at this example</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
@@ -189,12 +189,12 @@
 <p>I am using <a href="https://pestphp.com/">Pest</a>.</p>
 </blockquote>
 <p>The <code class="language-text">ECBExchangeRateService</code> will be resolved from the container, just as we would do in the 4 steps above, without the need to create extra interfaces or add more code. We maintain our clean, simple approach and ensure testability. And I know some people still won't agree, dismissing it as <em>dark magic</em>. Well, it's not really magic if it is in the <a href="https://laravel.com/docs/11.x/facades#real-time-facades">docs</a>; read your docs kids!</p>
-<h2 id="hooot-swappable" style="position:relative;"><a href="#hooot-swappable" aria-label="hooot swappable permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+<h2 id="hooot-swappable-" style="position:relative;"><a href="#hooot-swappable-" aria-label="hooot swappable  permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
               viewBox="0 0 490 490" xml:space="preserve">
            <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
              v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
              h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
-           </svg></a>Hooot Swappable</h2>
+           </svg></a>Hooot Swappable 🔥</h2>
 <p>Remember what I mentioned about thinking of facades as proxies? Let's explain it.</p>
 <p>When using Laravel Queues, we dispatch jobs in our code. When you're testing that code, you're not interested in testing if the actual job is working as expected or not; that can be tested separately. Instead, you're interested in whether or not the job has been dispatched, the number of times it's been dispatched, the payload used, etc. So, to achieve this, we would need two implementations, right? <code class="language-text">Dispatcher</code> and <code class="language-text">DispatcherFake</code> - one that actually dispatches the job to Redis, MySQL, or whatever you've set it for, and the second one that does not dispatch anything, but rather captures those events.</p>
 <p>If we were to implement this ourselves, we would need to follow the 4 steps from earlier, and change the bindings of these implementations depending on the context - if we are running tests or if we are running the actual code. Now, Facades make this much simpler, like really simple. Let's see how.</p>
@@ -325,4 +325,4 @@
           >
             window.___chunkMapping="{\"app\":[\"/app-06014886dc34fc3d2aba.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-0ebd60b2fb9cb9fe1f10.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-220139f960209804aa87.js\"],\"component---src-pages-using-typescript-tsx\":[\"/component---src-pages-using-typescript-tsx-877c28b53f4b0ba7558f.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-25ba21b77f32b7ec14ea.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="8634ee213365583b55cc";</script><script src="/webpack-runtime-02513abdc78eb7bcd287.js" async></script><script src="/framework-379b7ea7c44f25b32429.js" async></script><script src="/app-06014886dc34fc3d2aba.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="95d2e81d3df3deede0c3";</script><script src="/webpack-runtime-02513abdc78eb7bcd287.js" async></script><script src="/framework-379b7ea7c44f25b32429.js" async></script><script src="/app-06014886dc34fc3d2aba.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
