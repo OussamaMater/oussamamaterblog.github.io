@@ -1,4 +1,54 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.3.3"/><meta name="description" content="Hello! you&#x27;ll find my solutions to the Bandit challenges with an explanation, hopefully, this helps you if you&#x27;re struggling." data-gatsby-head="true"/><meta property="og:title" content="OverTheWire - Bandit" data-gatsby-head="true"/><meta property="og:description" content="Hello! you&#x27;ll find my solutions to the Bandit challenges with an explanation, hopefully, this helps you if you&#x27;re struggling." data-gatsby-head="true"/><meta property="og:type" content="website" data-gatsby-head="true"/><meta name="twitter:card" content="summary" data-gatsby-head="true"/><meta name="twitter:creator" content="" data-gatsby-head="true"/><meta name="twitter:title" content="OverTheWire - Bandit" data-gatsby-head="true"/><meta name="twitter:description" content="Hello! you&#x27;ll find my solutions to the Bandit challenges with an explanation, hopefully, this helps you if you&#x27;re struggling." data-gatsby-head="true"/><style data-href="/styles.57ed07a01ece3e115891.css" data-identity="gatsby-global-css">@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500&display=swap);@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-cyrillic-variable-wghtOnly-normal-f41a9bc7688bda1e84508030cb5c18fe.woff2) format("woff2");unicode-range:u+0301,u+0400-045f,u+0490-0491,u+04b0-04b1,u+2116}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-cyrillic-ext-variable-wghtOnly-normal-639b3c91831427d83cd3984af014778c.woff2) format("woff2");unicode-range:u+0460-052f,u+1c80-1c88,u+20b4,u+2de0-2dff,u+a640-a69f,u+fe2e-fe2f}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-latin-variable-wghtOnly-normal-b66f2d18f66f15c3ac56a2f4d68b3be5.woff2) format("woff2");unicode-range:u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+2000-206f,u+2074,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-latin-ext-variable-wghtOnly-normal-9f73369162c4382215d4317ba362fe1e.woff2) format("woff2");unicode-range:u+0100-024f,u+0259,u+1e??,u+2020,u+20a0-20ab,u+20ad-20cf,u+2113,u+2c60-2c7f,u+a720-a7ff}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(data:font/woff2;base64,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) format("woff2");unicode-range:u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+1ea0-1ef9,u+20ab}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-cyrillic-ext-400-normal-2a880e22b1b888ab54652a36d43b7f16.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0460-052f,u+1c80-1c88,u+20b4,u+2de0-2dff,u+a640-a69f,u+fe2e-fe2f}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-cyrillic-400-normal-fde0b55efc50742fb57fbebbb11c572f.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0301,u+0400-045f,u+0490-0491,u+04b0-04b1,u+2116}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(data:font/woff2;base64,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) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+1ea0-1ef9,u+20ab}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-latin-ext-400-normal-4657f5ab02d5923d223f96a9155a9bdc.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0100-024f,u+0259,u+1e??,u+2020,u+20a0-20ab,u+20ad-20cf,u+2113,u+2c60-2c7f,u+a720-a7ff}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-latin-400-normal-e009f21405b4d7e893674b69deb4cf4a.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+2000-206f,u+2074,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd}html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden]{display:none}:root{--maxWidth-none:"none";--maxWidth-xs:20rem;--maxWidth-sm:24rem;--maxWidth-md:28rem;--maxWidth-lg:32rem;--maxWidth-xl:36rem;--maxWidth-2xl:50rem;--maxWidth-3xl:48rem;--maxWidth-4xl:56rem;--maxWidth-full:"100%";--maxWidth-wrapper:var(--maxWidth-2xl);--spacing-px:"1px";--spacing-0:0;--spacing-1:0.25rem;--spacing-2:0.5rem;--spacing-3:0.75rem;--spacing-4:1rem;--spacing-5:1.25rem;--spacing-6:1.5rem;--spacing-8:2rem;--spacing-10:2.5rem;--spacing-12:3rem;--spacing-16:4rem;--spacing-20:5rem;--spacing-24:6rem;--spacing-32:8rem;--fontFamily-sans:"MontserratVariable",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--fontFamily-serif:"Merriweather","Georgia",Cambria,"Times New Roman",Times,serif;--font-body:var(--fontFamily-serif);--font-heading:var(--fontFamily-sans);--fontWeight-normal:400;--fontWeight-bold:700;--fontWeight-black:900;--fontSize-root:16px;--lineHeight-none:1;--lineHeight-tight:1.1;--lineHeight-normal:1.5;--lineHeight-relaxed:1.625;--fontSize-0:0.833rem;--fontSize-1:1rem;--fontSize-2:1.2rem;--fontSize-3:1.44rem;--fontSize-4:1.728rem;--fontSize-5:2.074rem;--fontSize-6:2.488rem;--fontSize-7:2.986rem;--color-primary:#a855f7;--color-text:#f3f4f6;--color-text-light:#b6b6b6;--color-heading:#1a202c;--color-heading-black:#000;--color-accent:#d1dce5}*,:after,:before{box-sizing:border-box}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:#111827;font-size:var(--fontSize-root);line-height:var(--lineHeight-normal)}body{color:var(--color-text);font-family:Inter,sans-serif;font-size:var(--fontSize-1)}footer{padding:var(--spacing-6) var(--spacing-0)}hr{background:var(--color-accent);border:0;height:1px}h1,h2,h3,h4,h5,h6{font-family:Inter,sans-serif;letter-spacing:-.025em;line-height:var(--lineHeight-tight);margin-bottom:var(--spacing-6);margin-top:var(--spacing-12)}h2,h3,h4,h5,h6{color:var(--color-heading);font-weight:var(--fontWeight-bold)}h1{font-size:var(--fontSize-6);font-weight:var(--fontWeight-black)}h1,h2{color:var(--color-text)}h2{font-size:var(--fontSize-5)}h3{font-size:var(--fontSize-4)}h3,h4{color:var(--color-text)}h4{font-size:var(--fontSize-3)}h5{font-size:var(--fontSize-2)}h5,h6{color:var(--color-text)}h6{font-size:var(--fontSize-1)}h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:inherit;text-decoration:none}p{--baseline-multiplier:0.179;--x-height-multiplier:0.35;line-height:var(--lineHeight-relaxed);margin:var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0)}ol,p,ul{padding:var(--spacing-0)}ol,ul{list-style-image:none;list-style-position:outside;margin-bottom:var(--spacing-8);margin-left:var(--spacing-0);margin-right:var(--spacing-0)}ol li,ul li{padding-left:var(--spacing-0)}li>p,ol li,ul li{margin-bottom:calc(var(--spacing-8)/2)}li :last-child{margin-bottom:var(--spacing-0)}li>ul{margin-left:var(--spacing-8);margin-top:calc(var(--spacing-8)/2)}blockquote{border-left:var(--spacing-1) solid var(--color-primary);color:var(--color-text-light);font-size:var(--fontSize-2);font-style:italic;margin-bottom:var(--spacing-8);margin-left:calc(var(--spacing-6)*-1);margin-right:var(--spacing-8);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6)}blockquote>:last-child{margin-bottom:var(--spacing-0)}blockquote>ol,blockquote>ul{list-style-position:inside}table{border-collapse:collapse;border-spacing:.25rem;margin-bottom:var(--spacing-8);width:100%}table thead tr th{border-bottom:1px solid var(--color-accent)}a{color:var(--color-primary)}a:focus,a:hover{text-decoration:none}.global-wrapper{margin:var(--spacing-0) auto;max-width:var(--maxWidth-wrapper);padding:var(--spacing-10) var(--spacing-5)}.global-wrapper[data-is-root-path=true] .bio{margin-bottom:var(--spacing-20)}.global-header{margin-bottom:var(--spacing-12)}.main-heading{font-size:var(--fontSize-7);margin:0}.post-list-item{margin-bottom:var(--spacing-8);margin-top:var(--spacing-8)}.post-list-item p{margin-bottom:var(--spacing-0)}.post-list-item h2{color:var(--color-primary);font-size:var(--fontSize-4);margin-bottom:var(--spacing-2);margin-top:var(--spacing-0)}.post-list-item header{margin-bottom:var(--spacing-4)}.header-link-home{font-family:Inter,sans-serif;font-size:var(--fontSize-2);font-weight:var(--fontWeight-bold);text-decoration:none}.bio{display:flex;margin-bottom:var(--spacing-16)}.bio p,.bio-avatar{margin-bottom:var(--spacing-0)}.bio-avatar{border-radius:100%;margin-right:var(--spacing-4);min-width:50px}.blog-post header h1{margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}.blog-post header p{font-family:Inter,sans-serif;font-size:var(--fontSize-2)}.blog-post-nav ul{margin:var(--spacing-0)}.gatsby-highlight{margin-bottom:var(--spacing-8)}@media (max-width:42rem){blockquote{margin-left:var(--spacing-0);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4)}ol,ul{list-style-position:inside}}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#f8f8f2;font-family:Fira Code,Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2e3440}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#636f88}.token.punctuation{color:#81a1c1}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#81a1c1}.token.number{color:#b48ead}.token.boolean{color:#81a1c1}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a3be8c}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#81a1c1}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#88c0d0}.token.keyword{color:#81a1c1}.token.important,.token.regex{color:#ebcb8b}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><title data-gatsby-head="true">OverTheWire - Bandit | Personal Blog</title><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><link rel="alternate" type="application/rss+xml" title="Oussama Mater&#x27;s Personal Blog" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2LRDH83LP2"></script><script>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.3.3"/><meta name="description" content="Hello! you&#x27;ll find my solutions to the Bandit challenges with an explanation, hopefully, this helps you if you&#x27;re struggling." data-gatsby-head="true"/><meta property="og:title" content="OverTheWire - Bandit" data-gatsby-head="true"/><meta property="og:description" content="Hello! you&#x27;ll find my solutions to the Bandit challenges with an explanation, hopefully, this helps you if you&#x27;re struggling." data-gatsby-head="true"/><meta property="og:type" content="website" data-gatsby-head="true"/><meta name="twitter:card" content="summary" data-gatsby-head="true"/><meta name="twitter:creator" content="" data-gatsby-head="true"/><meta name="twitter:title" content="OverTheWire - Bandit" data-gatsby-head="true"/><meta name="twitter:description" content="Hello! you&#x27;ll find my solutions to the Bandit challenges with an explanation, hopefully, this helps you if you&#x27;re struggling." data-gatsby-head="true"/><style data-href="/styles.57ed07a01ece3e115891.css" data-identity="gatsby-global-css">@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500&display=swap);@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-cyrillic-variable-wghtOnly-normal-f41a9bc7688bda1e84508030cb5c18fe.woff2) format("woff2");unicode-range:u+0301,u+0400-045f,u+0490-0491,u+04b0-04b1,u+2116}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-cyrillic-ext-variable-wghtOnly-normal-639b3c91831427d83cd3984af014778c.woff2) format("woff2");unicode-range:u+0460-052f,u+1c80-1c88,u+20b4,u+2de0-2dff,u+a640-a69f,u+fe2e-fe2f}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-latin-variable-wghtOnly-normal-b66f2d18f66f15c3ac56a2f4d68b3be5.woff2) format("woff2");unicode-range:u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+2000-206f,u+2074,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(/static/montserrat-latin-ext-variable-wghtOnly-normal-9f73369162c4382215d4317ba362fe1e.woff2) format("woff2");unicode-range:u+0100-024f,u+0259,u+1e??,u+2020,u+20a0-20ab,u+20ad-20cf,u+2113,u+2c60-2c7f,u+a720-a7ff}@font-face{font-display:swap;font-family:MontserratVariable;font-style:normal;font-weight:100 900;src:url(data:font/woff2;base64,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) format("woff2");unicode-range:u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+1ea0-1ef9,u+20ab}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-cyrillic-ext-400-normal-2a880e22b1b888ab54652a36d43b7f16.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0460-052f,u+1c80-1c88,u+20b4,u+2de0-2dff,u+a640-a69f,u+fe2e-fe2f}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-cyrillic-400-normal-fde0b55efc50742fb57fbebbb11c572f.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0301,u+0400-045f,u+0490-0491,u+04b0-04b1,u+2116}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(data:font/woff2;base64,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) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0102-0103,u+0110-0111,u+0128-0129,u+0168-0169,u+01a0-01a1,u+01af-01b0,u+1ea0-1ef9,u+20ab}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-latin-ext-400-normal-4657f5ab02d5923d223f96a9155a9bdc.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+0100-024f,u+0259,u+1e??,u+2020,u+20a0-20ab,u+20ad-20cf,u+2113,u+2c60-2c7f,u+a720-a7ff}@font-face{font-display:swap;font-family:Merriweather;font-style:normal;font-weight:400;src:url(/static/merriweather-latin-400-normal-e009f21405b4d7e893674b69deb4cf4a.woff2) format("woff2"),url(/static/merriweather-all-400-normal-5e7a0e6a9b864b89292d60ba5da59d4b.woff) format("woff");unicode-range:u+00??,u+0131,u+0152-0153,u+02bb-02bc,u+02c6,u+02da,u+02dc,u+2000-206f,u+2074,u+20ac,u+2122,u+2191,u+2193,u+2212,u+2215,u+feff,u+fffd}html{-webkit-text-size-adjust:100%;line-height:1.15}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden]{display:none}:root{--maxWidth-none:"none";--maxWidth-xs:20rem;--maxWidth-sm:24rem;--maxWidth-md:28rem;--maxWidth-lg:32rem;--maxWidth-xl:36rem;--maxWidth-2xl:50rem;--maxWidth-3xl:48rem;--maxWidth-4xl:56rem;--maxWidth-full:"100%";--maxWidth-wrapper:var(--maxWidth-2xl);--spacing-px:"1px";--spacing-0:0;--spacing-1:0.25rem;--spacing-2:0.5rem;--spacing-3:0.75rem;--spacing-4:1rem;--spacing-5:1.25rem;--spacing-6:1.5rem;--spacing-8:2rem;--spacing-10:2.5rem;--spacing-12:3rem;--spacing-16:4rem;--spacing-20:5rem;--spacing-24:6rem;--spacing-32:8rem;--fontFamily-sans:"MontserratVariable",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--fontFamily-serif:"Merriweather","Georgia",Cambria,"Times New Roman",Times,serif;--font-body:var(--fontFamily-serif);--font-heading:var(--fontFamily-sans);--fontWeight-normal:400;--fontWeight-bold:700;--fontWeight-black:900;--fontSize-root:16px;--lineHeight-none:1;--lineHeight-tight:1.1;--lineHeight-normal:1.5;--lineHeight-relaxed:1.625;--fontSize-0:0.833rem;--fontSize-1:1rem;--fontSize-2:1.2rem;--fontSize-3:1.44rem;--fontSize-4:1.728rem;--fontSize-5:2.074rem;--fontSize-6:2.488rem;--fontSize-7:2.986rem;--color-primary:#a855f7;--color-text:#f3f4f6;--color-text-light:#b6b6b6;--color-heading:#1a202c;--color-heading-black:#000;--color-accent:#d1dce5}*,:after,:before{box-sizing:border-box}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-color:#111827;font-size:var(--fontSize-root);line-height:var(--lineHeight-normal)}body{color:var(--color-text);font-family:Inter,sans-serif;font-size:var(--fontSize-1)}footer{padding:var(--spacing-6) var(--spacing-0)}hr{background:var(--color-accent);border:0;height:1px}h1,h2,h3,h4,h5,h6{font-family:Inter,sans-serif;letter-spacing:-.025em;line-height:var(--lineHeight-tight);margin-bottom:var(--spacing-6);margin-top:var(--spacing-12)}h2,h3,h4,h5,h6{color:var(--color-heading);font-weight:var(--fontWeight-bold)}h1{font-size:var(--fontSize-6);font-weight:var(--fontWeight-black)}h1,h2{color:var(--color-text)}h2{font-size:var(--fontSize-5)}h3{font-size:var(--fontSize-4)}h3,h4{color:var(--color-text)}h4{font-size:var(--fontSize-3)}h5{font-size:var(--fontSize-2)}h5,h6{color:var(--color-text)}h6{font-size:var(--fontSize-1)}h1>a,h2>a,h3>a,h4>a,h5>a,h6>a{color:inherit;text-decoration:none}p{--baseline-multiplier:0.179;--x-height-multiplier:0.35;line-height:var(--lineHeight-relaxed);margin:var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0)}ol,p,ul{padding:var(--spacing-0)}ol,ul{list-style-image:none;list-style-position:outside;margin-bottom:var(--spacing-8);margin-left:var(--spacing-0);margin-right:var(--spacing-0)}ol li,ul li{padding-left:var(--spacing-0)}li>p,ol li,ul li{margin-bottom:calc(var(--spacing-8)/2)}li :last-child{margin-bottom:var(--spacing-0)}li>ul{margin-left:var(--spacing-8);margin-top:calc(var(--spacing-8)/2)}blockquote{border-left:var(--spacing-1) solid var(--color-primary);color:var(--color-text-light);font-size:var(--fontSize-2);font-style:italic;margin-bottom:var(--spacing-8);margin-left:calc(var(--spacing-6)*-1);margin-right:var(--spacing-8);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6)}blockquote>:last-child{margin-bottom:var(--spacing-0)}blockquote>ol,blockquote>ul{list-style-position:inside}table{border-collapse:collapse;border-spacing:.25rem;margin-bottom:var(--spacing-8);width:100%}table thead tr th{border-bottom:1px solid var(--color-accent)}a{color:var(--color-primary)}a:focus,a:hover{text-decoration:none}.global-wrapper{margin:var(--spacing-0) auto;max-width:var(--maxWidth-wrapper);padding:var(--spacing-10) var(--spacing-5)}.global-wrapper[data-is-root-path=true] .bio{margin-bottom:var(--spacing-20)}.global-header{margin-bottom:var(--spacing-12)}.main-heading{font-size:var(--fontSize-7);margin:0}.post-list-item{margin-bottom:var(--spacing-8);margin-top:var(--spacing-8)}.post-list-item p{margin-bottom:var(--spacing-0)}.post-list-item h2{color:var(--color-primary);font-size:var(--fontSize-4);margin-bottom:var(--spacing-2);margin-top:var(--spacing-0)}.post-list-item header{margin-bottom:var(--spacing-4)}.header-link-home{font-family:Inter,sans-serif;font-size:var(--fontSize-2);font-weight:var(--fontWeight-bold);text-decoration:none}.bio{display:flex;margin-bottom:var(--spacing-16)}.bio p,.bio-avatar{margin-bottom:var(--spacing-0)}.bio-avatar{border-radius:100%;margin-right:var(--spacing-4);min-width:50px}.blog-post header h1{margin:var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0)}.blog-post header p{font-family:Inter,sans-serif;font-size:var(--fontSize-2)}.blog-post-nav ul{margin:var(--spacing-0)}.gatsby-highlight{margin-bottom:var(--spacing-8)}@media (max-width:42rem){blockquote{margin-left:var(--spacing-0);padding:var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4)}ol,ul{list-style-position:inside}}code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#f8f8f2;font-family:Fira Code,Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2e3440}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#636f88}.token.punctuation{color:#81a1c1}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#81a1c1}.token.number{color:#b48ead}.token.boolean{color:#81a1c1}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a3be8c}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#81a1c1}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#88c0d0}.token.keyword{color:#81a1c1}.token.important,.token.regex{color:#ebcb8b}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><title data-gatsby-head="true">OverTheWire - Bandit | Personal Blog</title><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 100)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="alternate" type="application/rss+xml" title="Oussama Mater&#x27;s Personal Blog" href="/rss.xml"/><link rel="icon" href="/favicon-32x32.png?v=4a9773549091c227cd2eb82ccd9c5e3a" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=4a9773549091c227cd2eb82ccd9c5e3a"/><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2LRDH83LP2"></script><script>
       
       
       if(!(navigator.doNotTrack == "1" || window.doNotTrack == "1")) {
@@ -9,8 +59,18 @@
         gtag('config', 'G-2LRDH83LP2', {"send_page_view":false});
       }
       </script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="global-wrapper" data-is-root-path="false"><header class="global-header"><a class="header-link-home" href="/">cd ..</a></header><main><article class="blog-post" itemscope="" itemType="http://schema.org/Article"><header><h1 itemProp="headline">OverTheWire - Bandit</h1><p>May 01, 2022</p></header><section itemProp="articleBody"><p><em>This is a guide that helps you through the challenges, so you can follow up and actually do the challenges, so no passwords will be provided.</em></p>
-<h2>Level 0</h2>
-<h3>Explanation</h3>
+<h2 id="level-0" style="position:relative;"><a href="#level-0" aria-label="level 0 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 0</h2>
+<h3 id="explanation" style="position:relative;"><a href="#explanation" aria-label="explanation permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>The goal of this challenge is to connect to the provided server via ssh.
 <br>
 To be able to use ssh you will always need 3 things:</p>
@@ -22,24 +82,54 @@ To be able to use ssh you will always need 3 things:</p>
 <p>so the command will be structured this way:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ssh username@ip</code></pre></div>
 <p>ssh uses 22 as a default port, but sometimes the administrator may change it, if that's the case, you'll have to provide it.</p>
-<h3>Solution</h3>
+<h3 id="solution" style="position:relative;"><a href="#solution" aria-label="solution permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">ssh</span> bandit0@bandit.labs.overthewire.org <span class="token parameter variable">-p</span> <span class="token number">2220</span>
 <span class="token comment"># use bandit0 as a password as well</span></code></pre></div>
-<h2>Level 0 → 1</h2>
-<h3>Explanation</h3>
+<h2 id="level-0--1" style="position:relative;"><a href="#level-0--1" aria-label="level 0  1 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 0 → 1</h2>
+<h3 id="explanation-1" style="position:relative;"><a href="#explanation-1" aria-label="explanation 1 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Now that you are inside the challenge server we can start solving these challenges.
 <br>
 Solving a challenge will give you the password of the next user, this way you can keep levelling up.
 <br>
 For this challenge, the password is stored in a file "readme" in the home directory of bandit0 user.</p>
-<h3>Solution</h3>
+<h3 id="solution-1" style="position:relative;"><a href="#solution-1" aria-label="solution 1 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit0@bandit:~$ <span class="token function">ls</span>
 readme
 bandit0@bandit:~$ <span class="token function">cat</span> readme 
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span>
 </code></pre></div>
-<h2>Level 1 → 2</h2>
-<h3>Explanation</h3>
+<h2 id="level-1--2" style="position:relative;"><a href="#level-1--2" aria-label="level 1  2 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 1 → 2</h2>
+<h3 id="explanation-2" style="position:relative;"><a href="#explanation-2" aria-label="explanation 2 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This challenge is similar to the previous one, but with a twist.
 <br>
 The "cat" command is not always used to echo out files content, it has different usages, so for instance if no filename is provided or the filename is "-" it will read from the stdin instead.
@@ -47,29 +137,64 @@ The "cat" command is not always used to echo out files content, it has different
 <a href="https://linuxize.com/post/linux-cat-command/">Read More - Article</a>
 <br>
 <a href="https://unix.stackexchange.com/questions/16357/usage-of-dash-in-place-of-a-filename">Read More - Discussion</a></p>
-<h3>Solution</h3>
+<h3 id="solution-2" style="position:relative;"><a href="#solution-2" aria-label="solution 2 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit1@bandit:~$ <span class="token function">ls</span>
 -
 bandit1@bandit:~$ ./- <span class="token comment"># or use the full path</span>
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span>
 </code></pre></div>
-<h2>Level 2 → 3</h2>
-<h3>Explanation</h3>
+<h2 id="level-2--3" style="position:relative;"><a href="#level-2--3" aria-label="level 2  3 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 2 → 3</h2>
+<h3 id="explanation-3" style="position:relative;"><a href="#explanation-3" aria-label="explanation 3 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Yet, so similar to the previous challenges, you need to echo out the content of a file, but the filename is special, kind of, in our case it has spaces, so you can't provide it as an argument to the "cat" command, as it will be look for the files "spaces", "in", "this", "filename".
 <br>
 To solve this challenge we need to <em>escape</em> the character space.</p>
-<h3>Solution</h3>
+<h3 id="solution-3" style="position:relative;"><a href="#solution-3" aria-label="solution 3 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit2@bandit:~$ <span class="token function">ls</span>
 spaces <span class="token keyword">in</span> this filename
 bandit2@bandit:~$ <span class="token function">cat</span> spaces<span class="token punctuation">\</span> in<span class="token punctuation">\</span> this<span class="token punctuation">\</span> filename
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span>
 </code></pre></div>
-<h2>Level 3 → 4</h2>
-<h3>Explanation</h3>
+<h2 id="level-3--4" style="position:relative;"><a href="#level-3--4" aria-label="level 3  4 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 3 → 4</h2>
+<h3 id="explanation-4" style="position:relative;"><a href="#explanation-4" aria-label="explanation 4 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge we need to change directory and list <em>all</em> the files.
 <br>
 In Linux and Unix systems, the files starting with . (a dot) are hidden files.</p>
-<h3>Solution</h3>
+<h3 id="solution-4" style="position:relative;"><a href="#solution-4" aria-label="solution 4 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit3@bandit:~$ <span class="token function">ls</span> <span class="token parameter variable">-l</span>
 total <span class="token number">4</span>
 drwxr-xr-x <span class="token number">2</span> root root <span class="token number">4096</span> May  <span class="token number">7</span>  <span class="token number">2020</span> inhere
@@ -82,12 +207,27 @@ drwxr-xr-x <span class="token number">3</span> root    root    <span class="toke
 bandit3@bandit:~$ <span class="token function">cat</span> .hidden
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span>
 </code></pre></div>
-<h2>Level 4 → 5</h2>
-<h3>Explanation</h3>
+<h2 id="level-4--5" style="position:relative;"><a href="#level-4--5" aria-label="level 4  5 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 4 → 5</h2>
+<h3 id="explanation-5" style="position:relative;"><a href="#explanation-5" aria-label="explanation 5 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Same as the previous challenge we need to change the directory, but once we do it, we are granted 9 files, one of which contains the password.
 <br>
 The hint states that the file we are looking for is human-readable (text), so we need to perform a simple check against all the files using the "file" command.</p>
-<h3>Solution</h3>
+<h3 id="solution-5" style="position:relative;"><a href="#solution-5" aria-label="solution 5 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit4@bandit:~$ <span class="token function">ls</span> <span class="token parameter variable">-l</span>
 total <span class="token number">4</span>
 drwxr-xr-x <span class="token number">2</span> root root <span class="token number">4096</span> May  <span class="token number">7</span>  <span class="token number">2020</span> inhere
@@ -96,8 +236,18 @@ bandit4@bandit:~/inhere$ <span class="token function">file</span> ./* <span clas
 ./-file07: ASCII text
 bandit4@bandit:~/inhere$ <span class="token function">cat</span> ./-file07
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 5 → 6</h2>
-<h3>Explanation</h3>
+<h2 id="level-5--6" style="position:relative;"><a href="#level-5--6" aria-label="level 5  6 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 5 → 6</h2>
+<h3 id="explanation-6" style="position:relative;"><a href="#explanation-6" aria-label="explanation 6 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge, we are granted 20 directories, each directory has multiple files, making it impossible to inspect the content of every file one by one, and only one out of these files has the password.
 <br>
 The file we are looking for has some unique properties:</p>
@@ -107,7 +257,12 @@ The file we are looking for has some unique properties:</p>
 <li>not executable</li>
 </ol>
 <p>We can use the "find" command and get it easily.</p>
-<h3>Solution</h3>
+<h3 id="solution-6" style="position:relative;"><a href="#solution-6" aria-label="solution 6 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit5@bandit:~$ <span class="token function">ls</span> <span class="token parameter variable">-l</span>
 total <span class="token number">4</span>
 drwxr-x--- <span class="token number">22</span> root bandit5 <span class="token number">4096</span> May  <span class="token number">7</span>  <span class="token number">2020</span> inhere
@@ -120,8 +275,18 @@ bandit5@bandit:~/inhere$ <span class="token function">find</span> <span class="t
 ./maybehere07/.file2
 bandit5@bandit:~/inhere$ <span class="token function">cat</span> ./maybehere07/.file2
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 6 → 7</h2>
-<h3>Explanation</h3>
+<h2 id="level-6--7" style="position:relative;"><a href="#level-6--7" aria-label="level 6  7 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 6 → 7</h2>
+<h3 id="explanation-7" style="position:relative;"><a href="#explanation-7" aria-label="explanation 7 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Similar to the previous challenge, we need to look for a file, but this time, across the system, the file has these unique properties:</p>
 <ol>
 <li>owned by user bandit7</li>
@@ -129,18 +294,38 @@ bandit5@bandit:~/inhere$ <span class="token function">cat</span> ./maybehere07/.
 <li>33 bytes in size</li>
 </ol>
 <p>The "find" command for the rescue!</p>
-<h3>Solution</h3>
+<h3 id="solution-7" style="position:relative;"><a href="#solution-7" aria-label="solution 7 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit6@bandit:~$ <span class="token function">ls</span>
 bandit6@bandit:~$ <span class="token function">find</span> / <span class="token parameter variable">-user</span> bandit7 <span class="token parameter variable">-group</span> bandit6 <span class="token parameter variable">-size</span> 33c <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null
 /var/lib/dpkg/info/bandit7.password
 bandit6@bandit:~$ <span class="token function">cat</span> /var/lib/dpkg/info/bandit7.password
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 7 → 8</h2>
-<h3>Explanation</h3>
+<h2 id="level-7--8" style="position:relative;"><a href="#level-7--8" aria-label="level 7  8 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 7 → 8</h2>
+<h3 id="explanation-8" style="position:relative;"><a href="#explanation-8" aria-label="explanation 8 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This challenge requires us to filter a big text file by grabbing a specific word.
 <br>
 The "grep" command is suitable for the job.</p>
-<h3>Solution</h3>
+<h3 id="solution-8" style="position:relative;"><a href="#solution-8" aria-label="solution 8 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit7@bandit:~$ <span class="token function">ls</span>
 data.txt
 bandit7@bandit:~$ <span class="token function">cat</span> data.txt <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"millionth"</span>
@@ -148,16 +333,41 @@ millionth       <span class="token punctuation">[</span>REDACTED<span class="tok
 bandit7@bandit:~$
 
 </code></pre></div>
-<h2>Level 8 → 9</h2>
-<h3>Explanation</h3>
+<h2 id="level-8--9" style="position:relative;"><a href="#level-8--9" aria-label="level 8  9 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 8 → 9</h2>
+<h3 id="explanation-9" style="position:relative;"><a href="#explanation-9" aria-label="explanation 9 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Similar to the previous challenge, we need to filter a big text file, the line we are looking for is the only line that occurs once, so we need to remove all the duplicates and echo out the content.</p>
-<h3>Solution</h3>
+<h3 id="solution-9" style="position:relative;"><a href="#solution-9" aria-label="solution 9 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit8@bandit:~$ <span class="token function">ls</span>
 data.txt
 bandit8@bandit:~$ <span class="token function">sort</span> data.txt <span class="token operator">|</span> <span class="token function">uniq</span> <span class="token parameter variable">-u</span>
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 9 → 10</h2>
-<h3>Explanation</h3>
+<h2 id="level-9--10" style="position:relative;"><a href="#level-9--10" aria-label="level 9  10 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 9 → 10</h2>
+<h3 id="explanation-10" style="position:relative;"><a href="#explanation-10" aria-label="explanation 10 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Still the same style as the previous one, to get the password we need to do some kind of filtering.
 <br>
 In this challenge, the password we are looking for is in one of the few <em>human-readable</em> strings, preceded by several = characters.
@@ -173,7 +383,12 @@ Regular Expressions are so interesting and a great skill to have, here are some 
 <a href="https://www.geeksforgeeks.org/how-to-use-regular-expressions-regex-on-linux">Read More - Article 3</a>
 <br>
 <a href="https://www.youtube.com/watch?v=ZfQFUJhPqMM">Read More - Video</a></p>
-<h3>Solution</h3>
+<h3 id="solution-10" style="position:relative;"><a href="#solution-10" aria-label="solution 10 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit9@bandit:~$ <span class="token function">ls</span>
 data.txt
 bandit9@bandit:~$ strings data.txt <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"=.*"</span>
@@ -188,8 +403,18 @@ c^ <span class="token assign-left variable">LAh</span><span class="token operato
 *SF<span class="token operator">=</span>s
 <span class="token operator">&amp;</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span> <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span>
 <span class="token assign-left variable">S</span><span class="token operator">=</span>A.H<span class="token operator">&amp;</span>^</code></pre></div>
-<h2>Level 10 → 11</h2>
-<h3>Explanation</h3>
+<h2 id="level-10--11" style="position:relative;"><a href="#level-10--11" aria-label="level 10  11 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 10 → 11</h2>
+<h3 id="explanation-11" style="position:relative;"><a href="#explanation-11" aria-label="explanation 11 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This time, there is no filtering, the challenge is straight forward, all we need to do is decoding the <em>base64</em> text.
 <br>
 If you've never heard about this encoding, or what bases are, I highly recommend reading these articles:
@@ -197,13 +422,28 @@ If you've never heard about this encoding, or what bases are, I highly recommend
 <a href="https://code.tutsplus.com/tutorials/base-what-a-practical-introduction-to-base-encoding--net-27590">Read More - Article</a>
 <br>
 <a href="https://www.base64encoder.io/learn/">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-11" style="position:relative;"><a href="#solution-11" aria-label="solution 11 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit10@bandit:~$ <span class="token function">ls</span>
 data.txt
 bandit10@bandit:~$ <span class="token function">cat</span> data.txt <span class="token operator">|</span> base64 <span class="token parameter variable">-d</span>
 The password is <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 11 → 12</h2>
-<h3>Explanation</h3>
+<h2 id="level-11--12" style="position:relative;"><a href="#level-11--12" aria-label="level 11  12 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 11 → 12</h2>
+<h3 id="explanation-12" style="position:relative;"><a href="#explanation-12" aria-label="explanation 12 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge the file content have been rotated by 13 positions, it's a common encryption called <em>rot13</em> which replaces a letter with the 13th etter after it in the alphabet.
 <br>
 We can simply use the "tr" command and replace one set of alphabet with another set.
@@ -215,15 +455,35 @@ I highly recommend reading more about the tr command:
 And about the common substitution encryption methods:
 <br>
 <a href="http://practicalcryptography.com/ciphers/substitution-category/">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-12" style="position:relative;"><a href="#solution-12" aria-label="solution 12 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit11@bandit:~$ <span class="token function">cat</span> data.txt <span class="token operator">|</span> <span class="token function">tr</span> <span class="token string">'A-Za-z'</span> <span class="token string">'N-ZA-Mn-za-m'</span>
 The password is <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 12 → 13</h2>
-<h3>Explanation</h3>
+<h2 id="level-12--13" style="position:relative;"><a href="#level-12--13" aria-label="level 12  13 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 12 → 13</h2>
+<h3 id="explanation-13" style="position:relative;"><a href="#explanation-13" aria-label="explanation 13 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This task is simple, but so repetitive, we have a Hex Dump that should be reverse engineered to a binary, and we start the decompression journey.
 <br>
 Note that in the solution I went quick, to know what decompression you are going for, use the "file" command as we learned in the previous challenges.</p>
-<h3>Solution</h3>
+<h3 id="solution-13" style="position:relative;"><a href="#solution-13" aria-label="solution 13 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit12@bandit:~$ <span class="token function">mkdir</span> /tmp/oussama
 bandit12@bandit:~$ <span class="token builtin class-name">cd</span> /tmp/oussama
 bandit12@bandit:/tmp/oussama$ <span class="token function">cp</span> ~/data.txt <span class="token builtin class-name">.</span>
@@ -241,18 +501,43 @@ bandit12@bandit:/tmp/oussama$ <span class="token function">mv</span> data8.bin d
 bandit12@bandit:/tmp/oussama$ <span class="token function">gzip</span> <span class="token parameter variable">-d</span> data8.gz
 bandit12@bandit:/tmp/oussama$ <span class="token function">cat</span> data8
 The password is <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 13 → 14</h2>
-<h3>Explanation</h3>
+<h2 id="level-13--14" style="position:relative;"><a href="#level-13--14" aria-label="level 13  14 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 13 → 14</h2>
+<h3 id="explanation-14" style="position:relative;"><a href="#explanation-14" aria-label="explanation 14 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Well this has to be one of the easiest tasks, as we are given the ssh private key.
 <br>
 All these challenges we've been using the <em>password</em> to login, but this is only an option, as we can use the private key instead, and that's exactly what we've done here.
 Read more about the two authentication methods:
 <br>
 <a href="https://www.appviewx.com/education-center/ssh-authentication-methods/">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-14" style="position:relative;"><a href="#solution-14" aria-label="solution 14 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit13@bandit:~$ <span class="token function">ssh</span> <span class="token parameter variable">-i</span> sshkey.private bandit14@localhost</code></pre></div>
-<h2>Level 14 → 15</h2>
-<h3>Explanation</h3>
+<h2 id="level-14--15" style="position:relative;"><a href="#level-14--15" aria-label="level 14  15 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 14 → 15</h2>
+<h3 id="explanation-15" style="position:relative;"><a href="#explanation-15" aria-label="explanation 15 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>To get the next password, we need to submit the current password to a service running on port 30000.
 <br>
 This can be done by using "netcat" command.
@@ -260,31 +545,66 @@ This can be done by using "netcat" command.
 If you are planning on playing CTFs I highly recommend learning this command and how it works as it can be so handy.
 <br>
 <a href="https://linuxize.com/post/netcat-nc-command-with-examples/">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-15" style="position:relative;"><a href="#solution-15" aria-label="solution 15 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit14@bandit:~$ <span class="token function">cat</span> /etc/bandit_pass/bandit14
 <span class="token punctuation">[</span>REDACTED - current password<span class="token punctuation">]</span>
 bandit14@bandit:~$ <span class="token function">nc</span> <span class="token number">127.0</span>.0.1 <span class="token number">30000</span>
 <span class="token punctuation">[</span>REDACTED - current password<span class="token punctuation">]</span> <span class="token comment"># simply paste the bandit14's password and hit enter</span>
 Correct<span class="token operator">!</span>
 <span class="token punctuation">[</span>REDACTED - password <span class="token keyword">for</span> the next level<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 15 → 16</h2>
-<h3>Explanation</h3>
+<h2 id="level-15--16" style="position:relative;"><a href="#level-15--16" aria-label="level 15  16 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 15 → 16</h2>
+<h3 id="explanation-16" style="position:relative;"><a href="#explanation-16" aria-label="explanation 16 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>It is almost the same challenge, the only difference is that server running this service is using SSL.
 <br>
 You can read more about SSL here:
 <br>
 <a href="https://www.websecurity.digicert.com/security-topics/what-is-ssl-tls-https">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-16" style="position:relative;"><a href="#solution-16" aria-label="solution 16 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit15@bandit:~$ <span class="token function">cat</span> /etc/bandit_pass/bandit15
 <span class="token punctuation">[</span>REDACTED - current password<span class="token punctuation">]</span>
 bandit15@bandit:~$ ncat <span class="token parameter variable">-C</span> <span class="token parameter variable">--ssl</span> <span class="token number">127.0</span>.0.1 <span class="token number">30001</span>
 <span class="token punctuation">[</span>REDACTED - current password<span class="token punctuation">]</span>
 Correct<span class="token operator">!</span>
 <span class="token punctuation">[</span>REDACTED - password <span class="token keyword">for</span> the next level<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 16 → 17</h2>
-<h3>Explanation</h3>
+<h2 id="level-16--17" style="position:relative;"><a href="#level-16--17" aria-label="level 16  17 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 16 → 17</h2>
+<h3 id="explanation-17" style="position:relative;"><a href="#explanation-17" aria-label="explanation 17 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This challenge will test what we learned in the previous ones, we need to locate all the services running in a specific range, then connect to each one of them, submit the current password, and get a private key that will eventually help us get the wanted password.</p>
-<h3>Solution</h3>
+<h3 id="solution-17" style="position:relative;"><a href="#solution-17" aria-label="solution 17 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit16@bandit:~$ nmap <span class="token parameter variable">-p</span> <span class="token number">31000</span>-32000 <span class="token number">127.0</span>.0.1
 Starting Nmap <span class="token number">7.40</span> <span class="token punctuation">(</span> https://nmap.org <span class="token punctuation">)</span> at <span class="token number">2022</span>-07-04 <span class="token number">11</span>:39 CEST
 Nmap scan report <span class="token keyword">for</span> localhost <span class="token punctuation">(</span><span class="token number">127.0</span>.0.1<span class="token punctuation">)</span>
@@ -315,34 +635,79 @@ bandit16@bandit:/tmp/oussama$ <span class="token function">chmod</span> <span cl
 bandit16@bandit:/tmp/oussama$ <span class="token function">ssh</span> <span class="token parameter variable">-i</span> id_rsa bandit17@localhost
 bandit17@bandit:~$ <span class="token function">cat</span> /etc/bandit_pass/bandit17
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 17 → 18</h2>
-<h3>Explanation</h3>
+<h2 id="level-17--18" style="position:relative;"><a href="#level-17--18" aria-label="level 17  18 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 17 → 18</h2>
+<h3 id="explanation-18" style="position:relative;"><a href="#explanation-18" aria-label="explanation 18 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This challenge is straightforward, we have two files (passwords.old, passwords.new), the password for the next level is in passwords.new and is the only line that has been changed between the two files.</p>
-<h3>Solution</h3>
+<h3 id="solution-18" style="position:relative;"><a href="#solution-18" aria-label="solution 18 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit17@bandit:~$ <span class="token function">diff</span> passwords.old passwords.new
 42c42
 <span class="token operator">&lt;</span> w0Yfolrc5bwjS4qw5mq1nnQi6mF03bii
 ---
 <span class="token operator">></span> <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 18 → 19</h2>
-<h3>Explanation</h3>
+<h2 id="level-18--19" style="position:relative;"><a href="#level-18--19" aria-label="level 18  19 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 18 → 19</h2>
+<h3 id="explanation-19" style="position:relative;"><a href="#explanation-19" aria-label="explanation 19 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge we are logged out as soon as we log in, the password is saved in a file called "readme" in the home directory, so we can simply echo out the content without connecting.
 <br>
 We are executing commands over ssh, this article can be useful:
 <br>
 <a href="https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-19" style="position:relative;"><a href="#solution-19" aria-label="solution 19 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">oussama@oussama:~$ <span class="token function">ssh</span> bandit18@bandit.labs.overthewire.org <span class="token parameter variable">-p</span> <span class="token number">2220</span> <span class="token string">'cat ~/readme'</span>
 This is a OverTheWire game server. More information on http://www.overthewire.org/wargames
 
 bandit18@bandit.labs.overthewire.orgs password:
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 19 → 20</h2>
-<h3>Explanation</h3>
+<h2 id="level-19--20" style="position:relative;"><a href="#level-19--20" aria-label="level 19  20 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 19 → 20</h2>
+<h3 id="explanation-20" style="position:relative;"><a href="#explanation-20" aria-label="explanation 20 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge, we will learn about the "setuid" (set user ID) which is a special type of file permission when set a user may execute the binary with a level of access that matches the user who owns the file.
 <br>
 <a href="https://www.computerhope.com/jargon/s/setuid.htm">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-20" style="position:relative;"><a href="#solution-20" aria-label="solution 20 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit19@bandit:~$ <span class="token function">ls</span>
 bandit20-do
 bandit19@bandit:~$ ./bandit20-do
@@ -350,12 +715,27 @@ Run a <span class="token builtin class-name">command</span> as another user.
   Example: ./bandit20-do <span class="token function">id</span>
 bandit19@bandit:~$ ./bandit20-do <span class="token function">cat</span> /etc/bandit_pass/bandit20
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 20 → 21</h2>
-<h3>Explanation</h3>
+<h2 id="level-20--21" style="position:relative;"><a href="#level-20--21" aria-label="level 20  21 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 20 → 21</h2>
+<h3 id="explanation-21" style="position:relative;"><a href="#explanation-21" aria-label="explanation 21 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge we are given a binary that has a setuid (like the previous challenge), this binary needs a port as an argument, it will connect to the service running on that port, reads the current password, if it matches, it will provide the next password.
 <br>
 So we need to create a service that when connected to, provides the current password, and run it in the background so continue using our session.</p>
-<h3>Solution</h3>
+<h3 id="solution-21" style="position:relative;"><a href="#solution-21" aria-label="solution 21 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit20@bandit:~$ <span class="token function">ls</span>
 suconnect
 bandit20@bandit:~$ ./suconnect
@@ -368,8 +748,18 @@ Read: <span class="token punctuation">[</span>REDACTED - Current Password<span c
 Password matches, sending next password
 <span class="token punctuation">[</span>REDACTED - New Password<span class="token punctuation">]</span>
 <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Done <span class="token builtin class-name">echo</span> <span class="token string">"[REDACTED - Current Password]"</span> <span class="token operator">|</span> netcat <span class="token parameter variable">-lp</span> <span class="token number">4444</span></code></pre></div>
-<h2>Level 21 → 22</h2>
-<h3>Explanation</h3>
+<h2 id="level-21--22" style="position:relative;"><a href="#level-21--22" aria-label="level 21  22 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 21 → 22</h2>
+<h3 id="explanation-22" style="position:relative;"><a href="#explanation-22" aria-label="explanation 22 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge we will get to learn cronjobs, it's a scheduling utility present in unix-like systems.
 <br>
 We need to list the crons, check what scripts are being executed and based on that we can solve the challenge.
@@ -381,7 +771,12 @@ Knowing how cronjobs work and how to create/configure them is a must-have skill,
 <a href="https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/">Read More - Article</a>
 <br>
 <a href="https://www.freecodecamp.org/news/cron-jobs-in-linux">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-22" style="position:relative;"><a href="#solution-22" aria-label="solution 22 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit21@bandit:~$ <span class="token builtin class-name">cd</span> /etc/cron.d
 bandit21@bandit:/etc/cron.d$ <span class="token function">ls</span>
 cronjob_bandit15_root  cronjob_bandit22  cronjob_bandit24
@@ -397,14 +792,29 @@ bandit21@bandit:/etc/cron.d$ <span class="token function">cat</span> /usr/bin/cr
 <span class="token function">cat</span> /etc/bandit_pass/bandit22 <span class="token operator">></span> /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 bandit21@bandit:/etc/cron.d$ <span class="token function">cat</span> /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 22 → 23</h2>
-<h3>Explanation</h3>
+<h2 id="level-22--23" style="position:relative;"><a href="#level-22--23" aria-label="level 22  23 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 22 → 23</h2>
+<h3 id="explanation-23" style="position:relative;"><a href="#explanation-23" aria-label="explanation 23 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This challenge is very similar to the previous challenge, but with a more complicated script that we need to understand.
 <br>
 The script is copying the password of whoever user executing it to the "tmp" directory in a file named the md5 hash of the name, if this makes sense.
 <br>
 So in short, the target is the md5 of the user executing the script.</p>
-<h3>Solution</h3>
+<h3 id="solution-23" style="position:relative;"><a href="#solution-23" aria-label="solution 23 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit22@bandit:~$ <span class="token builtin class-name">cd</span> /etc/cron.d
 bandit22@bandit:/etc/cron.d$ <span class="token function">ls</span>
 cronjob_bandit15_root  cronjob_bandit22  cronjob_bandit24
@@ -425,8 +835,18 @@ bandit22@bandit:/etc/cron.d$ <span class="token builtin class-name">echo</span> 
 8ca319486bfbbc3663ea0fbe81326349
 bandit22@bandit:/etc/cron.d$ <span class="token function">cat</span> /tmp/8ca319486bfbbc3663ea0fbe81326349
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 23 → 24</h2>
-<h3>Explanation</h3>
+<h2 id="level-23--24" style="position:relative;"><a href="#level-23--24" aria-label="level 23  24 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 23 → 24</h2>
+<h3 id="explanation-24" style="position:relative;"><a href="#explanation-24" aria-label="explanation 24 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Still with the cronjobs challenges, but this time we need to understand and write our first script.
 <br>
 Going through the script (code in the solution), we can see that it's simply deleting the files of a given directory, in our case "/var/spool/bandit24", but if the file is owned by the current user it will be executed, which means we need to create a script that copies the password to somewhere we can read it, like the "tmp" directory.
@@ -439,7 +859,12 @@ So here are the steps:</p>
 <li>Make the file <em>writable</em> by "others", remember the script will be run as "bandit24", so the file permission should be something like xx2, xx3, xx6 or xx7.</li>
 </ol>
 <p>You can read more about file permissions <a href="https://www.guru99.com/file-permissions.html">here</a>.</p>
-<h3>Solution</h3>
+<h3 id="solution-24" style="position:relative;"><a href="#solution-24" aria-label="solution 24 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit23@bandit:~$ <span class="token builtin class-name">cd</span> /etc/cron.d
 bandit23@bandit:/etc/cron.d$ <span class="token function">ls</span>
 cronjob_bandit15_root  cronjob_bandit22  cronjob_bandit24
@@ -479,8 +904,18 @@ bandit23@bandit:/tmp/oussamalevel24$ <span class="token function">cp</span> scri
 bandit23@bandit:/tmp/oussamalevel24$ <span class="token comment"># wait one minute or so</span>
 bandit23@bandit:/tmp/oussamalevel24$ <span class="token function">cat</span> bandit24
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 24 → 25</h2>
-<h3>Explanation</h3>
+<h2 id="level-24--25" style="position:relative;"><a href="#level-24--25" aria-label="level 24  25 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 24 → 25</h2>
+<h3 id="explanation-25" style="position:relative;"><a href="#explanation-25" aria-label="explanation 25 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge, we need to make another script to create 10000 combinations, so we can <em>brute-force</em> the service running on port 30002.
 <br>
 The service accepts our current password plus a 4-digit pin separated by a space.
@@ -493,7 +928,12 @@ Brute forcing is a very common attack that consists of an attacker submitting ma
 <a href="https://geekflare.com/brute-force-attack-tools/">Read More - Article</a>
 <br>
 <a href="https://www.tutorialspoint.com/kali_linux/kali_linux_password_cracking_tools.htm">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-25" style="position:relative;"><a href="#solution-25" aria-label="solution 25 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit24@bandit:~$ <span class="token function">mkdir</span> /tmp/oussamalevel25
 bandit24@bandit:~$ <span class="token builtin class-name">cd</span> /tmp/oussamalevel25
 bandit24@bandit:/tmp/oussamalevel25$ <span class="token function">nano</span> script.sh
@@ -509,14 +949,29 @@ bandit24@bandit:/tmp/oussamalevel25$ ./script.sh
 bandit24@bandit:/tmp/oussamalevel25$ <span class="token function">cat</span> passwords <span class="token operator">|</span> <span class="token function">nc</span> localhost <span class="token number">30002</span> <span class="token operator">>></span> result
 bandit24@bandit:/tmp/oussamalevel25$ <span class="token function">cat</span> result <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'The password'</span>
 The password of user bandit25 is <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 25 → 26</h2>
-<h3>Explanation</h3>
+<h2 id="level-25--26" style="position:relative;"><a href="#level-25--26" aria-label="level 25  26 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 25 → 26</h2>
+<h3 id="explanation-26" style="position:relative;"><a href="#explanation-26" aria-label="explanation 26 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge we will need to abuse the "more" command.
 <br>
 More command is used to view the text files in the command prompt, displaying one screen at a time in case the file is large, and the key to the challenge is that it will not finish executing as long as there is more content to be displayed.
 <br>
 Hopefully the solution will make sense.</p>
-<h3>Solution</h3>
+<h3 id="solution-26" style="position:relative;"><a href="#solution-26" aria-label="solution 26 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit25@bandit:~$ <span class="token function">ls</span> <span class="token parameter variable">-l</span>
 total <span class="token number">4</span>
 -r-------- <span class="token number">1</span> bandit25 bandit25 <span class="token number">1679</span> May  <span class="token number">7</span>  <span class="token number">2020</span> bandit26.sshkey
@@ -538,10 +993,25 @@ bandit25@bandit:~$ <span class="token comment"># this time it won't exit, so let
 bandit25@bandit:~$ <span class="token comment"># we can use vim to spawn a shell, (make sure you are in command mode by hitting esc) type :set shell=/bin/bash then type :shell, that's it!</span>
 bandit26@bandit:~$ <span class="token function">cat</span> /etc/bandit_pass/bandit26
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 26 → 27</h2>
-<h3>Explanation</h3>
+<h2 id="level-26--27" style="position:relative;"><a href="#level-26--27" aria-label="level 26  27 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 26 → 27</h2>
+<h3 id="explanation-27" style="position:relative;"><a href="#explanation-27" aria-label="explanation 27 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This challenge is pretty easy, we have a binary with that special file permission we discussed "setuid", so whenever executed it runs as the next level user, this way we can simply echo out the password.</p>
-<h3>Solution</h3>
+<h3 id="solution-27" style="position:relative;"><a href="#solution-27" aria-label="solution 27 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit26@bandit:~$ <span class="token function">ls</span>
 bandit27-do  text.txt
 bandit26@bandit:~$ ./bandit27-do
@@ -549,8 +1019,18 @@ Run a <span class="token builtin class-name">command</span> as another user.
   Example: ./bandit27-do <span class="token function">id</span>
 bandit26@bandit:~$ ./bandit27-do <span class="token function">cat</span> /etc/bandit_pass/bandit27
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 27 → 28</h2>
-<h3>Explanation</h3>
+<h2 id="level-27--28" style="position:relative;"><a href="#level-27--28" aria-label="level 27  28 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 27 → 28</h2>
+<h3 id="explanation-28" style="position:relative;"><a href="#explanation-28" aria-label="explanation 28 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>In this challenge, we will practice our git skills, so we are given a remote repository that we need to clone and explore.
 <br>
 This level requires some knowledge of what and how "git" works, I highly recommend reading these two articles to get you started:
@@ -558,7 +1038,12 @@ This level requires some knowledge of what and how "git" works, I highly recomme
 <a href="https://www.w3schools.com/git/">Read More - Article</a>
 <br>
 <a href="https://www.atlassian.com/git">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-28" style="position:relative;"><a href="#solution-28" aria-label="solution 28 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit27@bandit:~$ <span class="token builtin class-name">cd</span> /tmp
 bandit27@bandit:/tmp$ <span class="token function">mkdir</span> oussamalevel27
 bandit27@bandit:/tmp$ <span class="token builtin class-name">cd</span> oussamalevel27
@@ -583,14 +1068,29 @@ bandit27@bandit:/tmp/oussamalevel27/repo$ <span class="token function">ls</span>
 README
 bandit27@bandit:/tmp/oussamalevel27/repo$ <span class="token function">cat</span> README
 The password to the next level is: <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 28 → 29</h2>
-<h3>Explanation</h3>
+<h2 id="level-28--29" style="position:relative;"><a href="#level-28--29" aria-label="level 28  29 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 28 → 29</h2>
+<h3 id="explanation-29" style="position:relative;"><a href="#explanation-29" aria-label="explanation 29 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Still practising our git skills, this time we need to go one step back to get the password.
 <br>
 This book will help you understand most of the git commands and the need for each one of them:
 <br>
 <a href="https://books.goalkicker.com/GitBook/">Read More - Book</a></p>
-<h3>Solution</h3>
+<h3 id="solution-29" style="position:relative;"><a href="#solution-29" aria-label="solution 29 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit28@bandit:~$ <span class="token builtin class-name">cd</span> /tmp
 bandit28@bandit:/tmp$ <span class="token function">mkdir</span> oussamalevel28
 bandit28@bandit:/tmp$ <span class="token builtin class-name">cd</span> oussamalevel28
@@ -660,14 +1160,29 @@ Some notes <span class="token keyword">for</span> level29 of bandit.
 
 - username: bandit29
 - password: <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 29 → 30</h2>
-<h3>Explanation</h3>
+<h2 id="level-29--30" style="position:relative;"><a href="#level-29--30" aria-label="level 29  30 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 29 → 30</h2>
+<h3 id="explanation-30" style="position:relative;"><a href="#explanation-30" aria-label="explanation 30 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Still with the git challenges, this time we will play around with branches.
 <br>
 Every concept is well explained in the book above (previous challenge), but still, if you do want a quick article here is
 <a href="https://www.atlassian.com/git/tutorials/using-branches">one</a> and here is an
 <a href="https://learngitbranching.js.org/">interactive tutorial</a> as well.</p>
-<h3>Solution</h3>
+<h3 id="solution-30" style="position:relative;"><a href="#solution-30" aria-label="solution 30 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit29@bandit:~$ <span class="token function">mkdir</span> /tmp/oussamalevel29
 bandit29@bandit:~$ <span class="token builtin class-name">cd</span> /tmp/oussamalevel29
 bandit29@bandit:/tmp/oussamalevel29$ <span class="token function">git</span> clone ssh://bandit29-git@localhost/home/bandit29-git/repo
@@ -713,8 +1228,18 @@ Some notes <span class="token keyword">for</span> bandit30 of bandit.
 
 - username: bandit30
 - password: <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 30 → 31</h2>
-<h3>Explanation</h3>
+<h2 id="level-30--31" style="position:relative;"><a href="#level-30--31" aria-label="level 30  31 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 30 → 31</h2>
+<h3 id="explanation-31" style="position:relative;"><a href="#explanation-31" aria-label="explanation 31 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>Well, we are still doing git challenges, and in this one, we will learn about "tags".
 <br>
 Sometimes, when a commit is an import change, we may want to bookmark it, give it a label/alias, just to mark that progress in code, for example name it "v1.0", to do so, we use tags.
@@ -730,7 +1255,12 @@ I highly recommend reading more about tags:
 <a href="https://www.freecodecamp.org/news/git-tag-explained-how-to-add-remove/">Read More - Article</a>
 <br>
 And the book I shared in the previous challenges.</p>
-<h3>Solution</h3>
+<h3 id="solution-31" style="position:relative;"><a href="#solution-31" aria-label="solution 31 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit29@bandit:~$ <span class="token function">mkdir</span> /tmp/oussamalevel30 <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> <span class="token variable">$_</span>
 bandit30@bandit:/tmp/oussamalevel30$ <span class="token function">git</span> clone ssh://bandit30-git@localhost/home/bandit30-git/repo
 Cloning into <span class="token string">'repo'</span><span class="token punctuation">..</span>.
@@ -750,8 +1280,18 @@ bandit30@bandit:/tmp/oussamalevel30/repo$ <span class="token function">git</span
 secret
 bandit30@bandit:/tmp/oussamalevel30/repo$ <span class="token function">git</span> show secret
 <span class="token punctuation">[</span>REDACTED<span class="token punctuation">]</span></code></pre></div>
-<h2>Level 31 → 32</h2>
-<h3>Explanation</h3>
+<h2 id="level-31--32" style="position:relative;"><a href="#level-31--32" aria-label="level 31  32 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 31 → 32</h2>
+<h3 id="explanation-32" style="position:relative;"><a href="#explanation-32" aria-label="explanation 32 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This is the last "git" challenge, we need to push a txt file with a specific name and content.
 <br>
 But, there is a ".gitignore" file that ignores all txt files, so we need to get rid of it.
@@ -759,7 +1299,12 @@ But, there is a ".gitignore" file that ignores all txt files, so we need to get 
 This file is really useful in our projects, so maybe read this article:
 <br>
 <a href="https://www.pluralsight.com/guides/how-to-use-gitignore-file">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-32" style="position:relative;"><a href="#solution-32" aria-label="solution 32 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">bandit31@bandit:~$ <span class="token function">mkdir</span> /tmp/oussamalevel31 <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> <span class="token function">clear</span>
 bandit31@bandit:/tmp/oussamalevel31$ <span class="token function">git</span> clone ssh://bandit31-git@localhost/home/bandit31-git/repo
 Cloning into <span class="token string">'repo'</span><span class="token punctuation">..</span>.
@@ -822,8 +1367,18 @@ remote:
 To ssh://localhost/home/bandit31-git/repo
  <span class="token operator">!</span> <span class="token punctuation">[</span>remote rejected<span class="token punctuation">]</span> master -<span class="token operator">></span> master <span class="token punctuation">(</span>pre-receive hook declined<span class="token punctuation">)</span>
 error: failed to push some refs to <span class="token string">'ssh://bandit31-git@localhost/home/bandit31-git/repo'</span></code></pre></div>
-<h2>Level 32 → 33</h2>
-<h3>Explanation</h3>
+<h2 id="level-32--33" style="position:relative;"><a href="#level-32--33" aria-label="level 32  33 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Level 32 → 33</h2>
+<h3 id="explanation-33" style="position:relative;"><a href="#explanation-33" aria-label="explanation 33 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Explanation</h3>
 <p>This is the last challenge, where we need to escape a special shell that executes any given command as uppercase, and as you know a binary's name is case sensitive, so "ls" is different from "LS".
 <br>
 Well, the idea here is to use something that won't be affected by this conversion.
@@ -835,7 +1390,12 @@ Some helpful resources:
 <a href="https://unix.stackexchange.com/questions/280454/what-is-the-meaning-of-0-in-the-bash-shell">Read More - Discussion</a>
 <br>
 <a href="https://bash.cyberciti.biz/guide/$0">Read More - Article</a></p>
-<h3>Solution</h3>
+<h3 id="solution-33" style="position:relative;"><a href="#solution-33" aria-label="solution 33 permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Solution</h3>
 <div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">WELCOME TO THE UPPERCASE <span class="token environment constant">SHELL</span>
 <span class="token operator">>></span> <span class="token function">ls</span>
 sh: <span class="token number">1</span>: LS: not found
@@ -848,6 +1408,6 @@ bandit33</code></pre></div></section><hr/><footer><div class="bio"><div data-gat
           <script
             id="gatsby-chunk-mapping"
           >
-            window.___chunkMapping="{\"app\":[\"/app-afa36f3a075011d7755b.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-0ebd60b2fb9cb9fe1f10.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-220139f960209804aa87.js\"],\"component---src-pages-using-typescript-tsx\":[\"/component---src-pages-using-typescript-tsx-877c28b53f4b0ba7558f.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-25ba21b77f32b7ec14ea.js\"]}";
+            window.___chunkMapping="{\"app\":[\"/app-06014886dc34fc3d2aba.js\"],\"component---src-pages-404-js\":[\"/component---src-pages-404-js-0ebd60b2fb9cb9fe1f10.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-220139f960209804aa87.js\"],\"component---src-pages-using-typescript-tsx\":[\"/component---src-pages-using-typescript-tsx-877c28b53f4b0ba7558f.js\"],\"component---src-templates-blog-post-js\":[\"/component---src-templates-blog-post-js-25ba21b77f32b7ec14ea.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="ad02902f4ffea3d2bde9";</script><script src="/webpack-runtime-02513abdc78eb7bcd287.js" async></script><script src="/framework-379b7ea7c44f25b32429.js" async></script><script src="/app-afa36f3a075011d7755b.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="8634ee213365583b55cc";</script><script src="/webpack-runtime-02513abdc78eb7bcd287.js" async></script><script src="/framework-379b7ea7c44f25b32429.js" async></script><script src="/app-06014886dc34fc3d2aba.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
