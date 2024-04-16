@@ -308,6 +308,29 @@
     <span class="token class-name static-context">Dispatcher</span><span class="token operator">::</span><span class="token function">assertDispatched</span><span class="token punctuation">(</span><span class="token class-name static-context">Job</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>This is a hyper-simplified example, just to see things from a new perspective. Interestingly, this is how your favorite framework tests things internally. So, facades might not be as much of an anti-pattern as you might think. They might be named incorrectly, but you can see how they simplify things.</p>
+<h3 id="eyes-open-" style="position:relative;"><a href="#eyes-open-" aria-label="eyes open  permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+              viewBox="0 0 490 490" xml:space="preserve">
+           <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
+             v-48.162H390.23L424.108,0H365.31l-33.878,138.661H208.79L242.668,0h-58.415l-33.864,138.661H32.411v48.162h106.298l-28.818,117.324
+             h-77.48v48.162h65.8L64.333,490z M197.11,186.824h122.642l-29.2,117.324H168.292L197.11,186.824z"/>
+           </svg></a>Eye's open 🔍</h3>
+<p>My colleague <a href="https://twitter.com/hjanos95">János</a> made a good point worth considering, which might save a few hours of debugging 🧠.</p>
+<p>First, let's have a look at the <code class="language-text">swap</code> method</p>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token comment">/**
+* Hotswap the underlying instance behind the facade.
+*
+* @param  mixed  $instance
+* @return void
+*/</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">swap</span><span class="token punctuation">(</span><span class="token variable">$instance</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$resolvedInstance</span><span class="token punctuation">[</span><span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">getFacadeAccessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$instance</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$app</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token variable">$app</span><span class="token operator">-></span><span class="token function">instance</span><span class="token punctuation">(</span><span class="token keyword static-context">static</span><span class="token operator">::</span><span class="token function">getFacadeAccessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$instance</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Binding the faked instance to the container</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>You can see that when swapping instances, we're not just replacing the cached resolved instance; we're also binding it to the container. This implies that <strong>ALL</strong> future returned instances, whether using dependency injection or the <code class="language-text">app()</code> helper, will yield a fake implementation. So, if you're running integration tests, where some classes use constructor injection and not facades, they will also receive the faked implementation. Nevertheless, if you ever call the <code class="language-text">fake()</code> method, you would expect to receive the fake implementation everywhere anyway. However, it's something to bear in mind when writing tests (especially integration tests), where you might want to use the <strong>actual</strong> class instead.</p>
 <h2 id="conclusion" style="position:relative;"><a href="#conclusion" aria-label="conclusion permalink" class="anchor before"><svg fill="#A855F7" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
               viewBox="0 0 490 490" xml:space="preserve">
            <path d="M64.333,490h58.401l33.878-137.69h122.259L245.39,490h58.401l33.878-137.69h119.92v-48.162h-108.24l29.2-117.324h79.04
