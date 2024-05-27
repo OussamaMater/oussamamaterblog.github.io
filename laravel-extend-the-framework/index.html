@@ -138,7 +138,8 @@
            </svg></a>So, what do we do?</h2>
 <p>Now that we've explored the basic options, we can start thinking of more advanced ones, like design patterns. We don't need an exact implementation, just something familiar to our problem. This is why I always say it's good to know them. In this case, we can "decorate" the <code class="language-text">Generator</code> class by adding new features while maintaining the old ones. Sounds good? Let's see how!</p>
 <p>First, let's create a new class, <code class="language-text">FakerGenerator</code>:</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php">
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
 <span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Support</span><span class="token punctuation">;</span>
 
 <span class="token keyword">use</span> <span class="token package">Closure</span><span class="token punctuation">;</span>
@@ -162,12 +163,12 @@
     <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">forwardCallTo</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">generator</span><span class="token punctuation">,</span> <span class="token variable">$method</span><span class="token punctuation">,</span> <span class="token variable">$parameters</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre></div>
+<span class="token punctuation">}</span></span></code></pre></div>
 <p>This will be our "decorator" (kinda). It is a simple class that expects the base <code class="language-text">Generator</code> as a dependency and introduces a new modifier, <code class="language-text">uniqueAndValid()</code>. It also uses the <code class="language-text">ForwardsCalls</code> trait from Laravel, which allows it to proxy calls to the base object.</p>
 <blockquote>
 <p>This trait has two methods: <code class="language-text">forwardCallTo</code> and <code class="language-text">forwardDecoratedCallTo</code>. Use the latter when you want to chain methods on the decorated object. In our case, we will always have a single call.</p>
 </blockquote>
-<p>Now we need to implement the <code class="language-text">UniqueAndValidGenerator</code>, which is the custom modifier, but this is not the point of the article. If you are interested in the implementation, this class is basically a mixture of the <code class="language-text">UniqueGenerator</code> and <code class="language-text">ValidGenerator</code> that ship with FakerPHP.</p>
+<p>Now we need to implement the <code class="language-text">UniqueAndValidGenerator</code>, which is the custom modifier, but this is not the point of the article. If you are interested in the implementation, this class is basically a mixture of the <a href="https://github.com/FakerPHP/Faker/blob/2.0/src/ValidGenerator.php" target="_blank">ValidGenerator</a> and <a href="https://github.com/FakerPHP/Faker/blob/2.0/src/UniqueGenerator.php" target="_blank">UniqueGenerator</a> that ship with FakerPHP, you can find it <a href="https://gist.github.com/OussamaMater/b5cb099d81529c8feb503ecdd5469183" target="_blank">here</a>.</p>
 <p>Now, let's <em>extend</em> the framework, in the <code class="language-text">AppServiceProvider</code>:</p>
 <div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
