@@ -138,7 +138,10 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></span></code></pre></div>
 <p>Now let's rerun the code:</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token function">str</span><span class="token punctuation">(</span><span class="token variable">$jwt</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">before</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'.'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">fromBase64</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">fromJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token function">str</span><span class="token punctuation">(</span><span class="token variable">$jwt</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">before</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'.'</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">fromBase64</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">fromJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// ["alg" => "HS256", "typ" => "JWT"]</span></code></pre></div>
 <p>It works perfectly 🎉 But now, you might be wondering, how did this work? And what exactly is <code class="language-text">$this->value</code>? What in the harry potter is going on?</p>
@@ -233,7 +236,10 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>And that's it! Now we can do:</p>
-<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token function">str</span><span class="token punctuation">(</span><span class="token variable">$jwt</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">before</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'.'</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">fromBase64</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-></span><span class="token function">fromJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<div class="gatsby-highlight" data-language="php"><pre class="language-php"><code class="language-php"><span class="token function">str</span><span class="token punctuation">(</span><span class="token variable">$jwt</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">before</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'.'</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">fromBase64</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token operator">-></span><span class="token function">fromJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <blockquote>
 <p>Which is basically the same, just a bit cleaner.</p>
 </blockquote>
